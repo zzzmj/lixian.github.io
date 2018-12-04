@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="button.css">
+    <script src="sweetalert.min.js"></script>
+    <title>你必须喜欢我</title>
+    <style>
+        body {
+            background: #f4eddd;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        .text-center {
+            text-align: center !important;
+        }
+
+        .wrap {
+            margin-top: 3em;
+            position: relative;
+            border-radius: 4px;
+            padding: 8px;
+            width: 460px;
+            min-height: 80vh;
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .button {
+            margin: 2em;
+            transition-duration: .1s;
+        }
+
+        .btn-none {
+            display: none;
+        }
+        
+        #btn-dislike {
+            margin: 0px;
+        }
+        
+    </style>
+</head>
+<body>
+   <div class="wrap">
+        <div class="like text-center">
+            <h2>你喜欢我吗?</h2>
+            <button class="button button-glow button-rounded button-royal" onclick="likeMe()">YES</button>
+            <button class="dislike button button-glow button-border button-rounded button-primary">NO</button>
+        </div>
+    </div>
+    <button id="btn-dislike" class= "btn-none button button-glow button-border button-rounded button-primary" onclick="dislikeMe()">NO</button>
+    
+
+    <script>
+        var timer
+        // 容器内的button
+        var dislike = document.querySelector('.dislike')
+        // body内的button
+        var btnDislike = document.querySelector('#btn-dislike')
+
+        function likeMe() {
+            swal('很好, 你做出了正确的选择！')
+            clearInterval(timer)
+        }
+        function dislikeMe() {
+            swal('很好，这都被你点到了。。。算你厉害！')
+            clearInterval(timer)
+        }
+
+        // 关闭关闭容器内的button, 打开body内的button
+        var toggle = function() {
+            btnDislike.classList.remove('btn-none')
+            dislike.classList.add('btn-none')
+        }
+        
+        // 改变按钮的位置
+        function btnPos(element, width, height) {
+            var flag = true;
+            // 因为按钮一开始是没top属性的, 所以给它一个属性先
+            if (element.style.top == "") {
+                var preTop = 0
+                var preLeft = 0
+            } else {
+                // 得到当前button的位置, 裁剪掉后面的px, 并转成整数
+                var preTop = parseInt(element.style.top.slice(0, -2))
+                var preLeft = parseInt(element.style.left.slice(0, -2))
+            }
+            while(flag) {
+                var top = parseInt(Math.random()*height);
+                var left = parseInt(Math.random()*width);
+                var a = Math.abs(top-preTop)
+                var b = Math.abs(left-preLeft)
+                if ((a > height/2 || b > width/2)) {
+                    flag = false;
+                }
+            }
+            element.style.position = 'absolute'
+            element.style.top = top + 'px'
+            element.style.left = left + 'px'
+        }
+    
+        // 如果是手机用户, 我们让按钮不停的动, 让他点不到
+        if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+            toggle()
+            var width = document.body.clientWidth-105;
+            var height = document.body.clientHeight-38;
+            timer = setInterval(function() {
+                btnPos(btnDislike, width, height)
+            }, 200)
+        } else {
+            // 隐藏该button，显示body内的button
+            dislike.addEventListener('mouseover', function(event) {
+                toggle()
+            })
+            // 如果是电脑，鼠标移入按钮就改变位置，让他误认为自己能点到
+            btnDislike.addEventListener('mouseover', function(event) {
+                var width = document.body.clientWidth-109;
+                var height = document.body.clientHeight-40;
+                btnPos(btnDislike, width, height)
+            })
+        }
+    </script>
+
+</body>
+</html>
