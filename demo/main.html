@@ -70,6 +70,8 @@
         function likeMe() {
             swal('很好, 你做出了正确的选择！')
             clearInterval(timer)
+            btnDislike.classList.add('btn-none')
+            dislike.classList.add('btn-none')
         }
         function dislikeMe() {
             swal('很好，这都被你点到了。。。算你厉害！')
