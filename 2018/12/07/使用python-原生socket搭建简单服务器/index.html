@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>使用python 原生socket搭建简单服务器 | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="python,socket,server">
+    <meta name="description" content="使用socket搭建简单的服务器socket通信流程                                                                                                           chrome浏览器模拟客户端, 访问该服务器, 显示文字和图片 其中值得注意的地方: 当我键入服务器地址访问时, chrome浏览器给">
+<meta name="keywords" content="python,socket,server">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用python 原生socket搭建简单服务器">
+<meta property="og:url" content="http://yoursite.com/2018/12/07/使用python-原生socket搭建简单服务器/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="使用socket搭建简单的服务器socket通信流程                                                                                                           chrome浏览器模拟客户端, 访问该服务器, 显示文字和图片 其中值得注意的地方: 当我键入服务器地址访问时, chrome浏览器给">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/1199740/201709/1199740-20170915104804953-3885330.png">
+<meta property="og:updated_time" content="2018-12-07T08:47:39.514Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用python 原生socket搭建简单服务器">
+<meta name="twitter:description" content="使用socket搭建简单的服务器socket通信流程                                                                                                           chrome浏览器模拟客户端, 访问该服务器, 显示文字和图片 其中值得注意的地方: 当我键入服务器地址访问时, chrome浏览器给">
+<meta name="twitter:image" content="https://images2017.cnblogs.com/blog/1199740/201709/1199740-20170915104804953-3885330.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="Hexo" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">zzzmj</h5>
+          <a href="mailto:im_zmj@163.com" title="im_zmj@163.com" class="mail">im_zmj@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives">
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags">
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories">
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/zzzmj" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom">
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">使用python 原生socket搭建简单服务器</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">使用python 原生socket搭建简单服务器</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-12-07T08:37:19.000Z" itemprop="datePublished" class="page-time">
+  2018-12-07
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Web通信/">Web通信</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用socket搭建简单的服务器"><span class="post-toc-number">1.</span> <span class="post-toc-text">使用socket搭建简单的服务器</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-使用python-原生socket搭建简单服务器" class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">使用python 原生socket搭建简单服务器</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-12-07 16:37:19" datetime="2018-12-07T08:37:19.000Z" itemprop="datePublished">2018-12-07</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Web通信/">Web通信</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="使用socket搭建简单的服务器"><a href="#使用socket搭建简单的服务器" class="headerlink" title="使用socket搭建简单的服务器"></a>使用socket搭建简单的服务器</h2><p>socket通信流程<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://images2017.cnblogs.com/blog/1199740/201709/1199740-20170915104804953-3885330.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<p>chrome浏览器模拟客户端, 访问该服务器, 显示文字和图片</p>
+<p>其中值得注意的地方: 当我键入服务器地址访问时, chrome浏览器给服务器发送了<strong>四个http请求</strong></p>
+<ul>
+<li><p>请求1: 请求主页</p>
+<blockquote>
+<p>GET / HTTP/1.1<br>Host: localhost:3000</p>
+</blockquote>
+</li>
+<li><p>请求2: 请求图片</p>
+<blockquote>
+<p>GET /doge.gif HTTP/1.1<br>Host: localhost:3000</p>
+</blockquote>
+</li>
+<li><p>请求3：请求标签栏图标</p>
+<blockquote>
+<p>GET /favicon.ico HTTP/1.1<br>Host: localhost:3000</p>
+</blockquote>
+</li>
+<li><p>请求4：空请求</p>
+<p>  会导致程序报错, 需要捕获这个请求，因为会我写的responce_for_pat里没有响应空请求</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">route_index</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    主页的处理函数, 返回主页的响应</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    header = <span class="string">'HTTP/1.x 200 OK\r\nContent-Type: text/html\r\n'</span></span><br><span class="line">    body = <span class="string">'&lt;h1&gt;Hello World&lt;/h1&gt;&lt;img src="doge.gif"/&gt;'</span></span><br><span class="line">    r = header + <span class="string">'\r\n'</span> + body</span><br><span class="line">    <span class="keyword">return</span> r.encode(encoding=<span class="string">'utf-8'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">route_img</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    图片的处理函数, 读取图片并生成响应返回</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">'doge.gif'</span>, <span class="string">'rb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        header = <span class="string">b'HTTP/1.x 200 OK\r\nContent-Type: image/gif\r\n\r\n'</span></span><br><span class="line">        img = header + f.read()</span><br><span class="line">        <span class="keyword">return</span> img</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">responce_for_path</span><span class="params">(path)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    根据 path 调用相应的处理函数</span></span><br><span class="line"><span class="string">    没有处理的 path 会返回 404</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    r = &#123;</span><br><span class="line">        <span class="string">'/'</span>: route_index,</span><br><span class="line">        <span class="string">'/doge.gif'</span>: route_img,</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment"># 这里得到的是一个函数体</span></span><br><span class="line">    responce = r.get(path)</span><br><span class="line">    <span class="keyword">return</span> responce()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(host=<span class="string">''</span>, port=<span class="number">3000</span>)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    启动服务器</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="comment"># 初始化socket</span></span><br><span class="line">    <span class="keyword">with</span> socket.socket() <span class="keyword">as</span> s:</span><br><span class="line">        s.bind((host, port))</span><br><span class="line">        <span class="comment"># 监听 接收 读取请求数据</span></span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">            s.listen(<span class="number">5</span>)</span><br><span class="line">            connection, address = s.accept()</span><br><span class="line">            request = connection.recv(<span class="number">1024</span>).decode(<span class="string">'utf-8'</span>)</span><br><span class="line">            print(<span class="string">'ip = &#123;&#125;\nrequest = &#123;&#125;'</span>.format(address, request))</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                <span class="comment"># 得到HTTP请求的路径</span></span><br><span class="line">                path = request.split()[<span class="number">1</span>]</span><br><span class="line">                <span class="comment"># 根据路径返回响应</span></span><br><span class="line">                responce = responce_for_path(path)</span><br><span class="line">                <span class="comment"># 响应给客户端(浏览器)</span></span><br><span class="line">                connection.sendall(responce)</span><br><span class="line">            <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">                print(<span class="string">'error'</span>, e)</span><br><span class="line">            connection.close</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    config = dict(</span><br><span class="line">        host=<span class="string">''</span>,</span><br><span class="line">        port=<span class="number">3000</span>,</span><br><span class="line">    )</span><br><span class="line">    run(**config)</span><br></pre></td></tr></table></figure>
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-12-07T08:47:39.514Z" itemprop="dateUpdated">2018-12-07 16:47:39</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="zzzmj">
+            zzzmj
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/server/">server</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/socket/">socket</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/12/07/使用python-原生socket搭建简单服务器/&title=《使用python 原生socket搭建简单服务器》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/12/07/使用python-原生socket搭建简单服务器/&title=《使用python 原生socket搭建简单服务器》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/12/07/使用python-原生socket搭建简单服务器/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用python 原生socket搭建简单服务器》 — Hexo&url=http://yoursite.com/2018/12/07/使用python-原生socket搭建简单服务器/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/12/07/使用python-原生socket搭建简单服务器/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/12/07/使用python-原生socket爬取豆瓣top25/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">使用python 原生socket爬取豆瓣top250 (客户端)</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'true';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'true' == 'true',
+            verify: 'false' == 'true',
+            appId: "ueQDd8jwMyyv0oHizSQnj0fo-gzGzoHsz",
+            appKey: "707RqsgPxLXd5huWLerS00Oz",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>zzzmj &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/12/07/使用python-原生socket搭建简单服务器/&title=《使用python 原生socket搭建简单服务器》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/12/07/使用python-原生socket搭建简单服务器/&title=《使用python 原生socket搭建简单服务器》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/12/07/使用python-原生socket搭建简单服务器/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用python 原生socket搭建简单服务器》 — Hexo&url=http://yoursite.com/2018/12/07/使用python-原生socket搭建简单服务器/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/12/07/使用python-原生socket搭建简单服务器/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACvElEQVR42u3aQU7EMAwF0Ln/pUFCLJBQ2287BoReV6Oh4+Z1EQfbr1d8vX1c37/5+v3VN/dxvn+fPOvwhYeHh9da+tV1CnMV+X4lydMfIuPh4eGt8ZLNurd978VJEhgeHh7e7/KSI3U1DeSHZjw8PLz/wUvizJeYpBM8PDy8n+clxYi9hDGPc6DWgoeHhxfzqg2wv/B5sb+Hh4eHN+iq55t4XoStlnR76/yMg4eHh7fAqx5zk407Hw7I9/NqFijMI+Dh4eEVeZPhqr0Rq2qh5PKl4+Hh4S3weg2tvDGWb+6nml4P2Q8PDw9vzMsTQKFVf3QE4f64/1DwxcPDw1vjVUmTEYHqEMDoUI6Hh4e3wMsXnSyoF7k3xHB/BL+MjIeHh3eIlx9z87GAebQ8zsNv8fDw8I7ykjLBgdmEQWGiUHpIyrh4eHh4h3jJ0FUvMfRKCfmYwkMKwcPDw1vg9bb7pCk1f03NagoeHh7eMm++sVYLCkkbrHrPJR4PDw9vgZeE6BUC5qMA1ZRwWebAw8PDO8pLDsd5ETa/537pvRdxmffw8PDwjvJ6pdj8dVRbWclLaQ6B4eHh4R3l9QDVTbw6TJB8jqrUeHh4eMu8Ximh2hKbpIRX9cLDw8Nb4M1DVFNIPmrQW+flX/Hw8PAO8e63/l5iqCaDvIicFDLw8PDw9nh5+bW3lU+GDJLE8xABDw8P78d51S2+euyet8SaPT08PDy8Aa9Hze/PRxNyav4sPDw8vA1er+lVHbcqbN/Fg/jDevDw8PAWeGcPxL0H947a+fgCHh4e3gYvTwbVY3S1KNwbQSj8r4CHh4d3lFdNBr0BrOqvDtRa8PDw8H6V17szH6KqJphohXh4eHh/hpeXJKrppJc8HooReHh4eAu8ajEiwUxSyxyPh4eHt8c71QDbaKH1BgjKFx4eHl7Kewcton2CY/APkQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
