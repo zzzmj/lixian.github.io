@@ -1,32 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang=zh>
 <head><meta name="generator" content="Hexo 3.8.0">
-    
-
-    
-
-    
-
-
-
+    <!-- so meta -->
     <meta charset="utf-8">
-    
-    
-    
-    
-    <title>使用GitHub和Hexo搭建博客 | Hexo</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-    <meta name="theme-color" content="#3F51B5">
-    
-    
-    <meta name="keywords" content="git,github,搭建博客">
     <meta name="description" content="1. 前言使用GitHub和Hexo搭建博客, 也就是本博客的搭建过程 2. 准备工作 我们要使用hexo这个框架来做我们的静态网页，因为是基于node.js开发的，所以我们安装好node.js 然后我们用github来做网站，所以要有github账号 最后我们把我们的静态网页传到github上，所以需要git  3. 使用hexohexo官方文档：https://hexo.io/zh-cn/do">
 <meta name="keywords" content="git,github,搭建博客">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用GitHub和Hexo搭建博客">
 <meta property="og:url" content="http://yoursite.com/2018/11/29/使用GitHub和Hexo搭建博客/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="你好,世界">
 <meta property="og:description" content="1. 前言使用GitHub和Hexo搭建博客, 也就是本博客的搭建过程 2. 准备工作 我们要使用hexo这个框架来做我们的静态网页，因为是基于node.js开发的，所以我们安装好node.js 然后我们用github来做网站，所以要有github账号 最后我们把我们的静态网页传到github上，所以需要git  3. 使用hexohexo官方文档：https://hexo.io/zh-cn/do">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2018-11-29T10:02:32.003Z">
@@ -34,165 +19,137 @@
 <meta name="twitter:title" content="使用GitHub和Hexo搭建博客">
 <meta name="twitter:description" content="1. 前言使用GitHub和Hexo搭建博客, 也就是本博客的搭建过程 2. 准备工作 我们要使用hexo这个框架来做我们的静态网页，因为是基于node.js开发的，所以我们安装好node.js 然后我们用github来做网站，所以要有github账号 最后我们把我们的静态网页传到github上，所以需要git  3. 使用hexohexo官方文档：https://hexo.io/zh-cn/do">
     
-        <link rel="alternate" type="application/atom+xml" title="Hexo" href="/atom.xml">
     
-    <link rel="shortcut icon" href="/favicon.ico">
-    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
-    <script>window.lazyScripts=[]</script>
-
-    <!-- custom head -->
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
     
-
+    <!-- title -->
+    <title>使用GitHub和Hexo搭建博客</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
 </head>
 
-<body>
-    <div id="loading" class="active"></div>
-
-    <aside id="menu" class="hide">
-  <div class="inner flex-row-vertical">
-    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
-        <i class="icon icon-lg icon-close"></i>
-    </a>
-    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
-      <div class="brand">
-        <a href="/" class="avatar waves-effect waves-circle waves-light">
-          <img src="/img/avatar.jpg">
-        </a>
-        <hgroup class="introduce">
-          <h5 class="nickname">zzzmj</h5>
-          <a href="mailto:im_zmj@163.com" title="im_zmj@163.com" class="mail">im_zmj@163.com</a>
-        </hgroup>
-      </div>
-    </div>
-    <div class="scroll-wrap flex-col">
-      <ul class="nav">
-        
-            <li class="waves-block waves-effect">
-              <a href="/">
-                <i class="icon icon-lg icon-home"></i>
-                主页
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/archives">
-                <i class="icon icon-lg icon-archives"></i>
-                归档
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/tags">
-                <i class="icon icon-lg icon-tags"></i>
-                标签
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/categories">
-                <i class="icon icon-lg icon-th-list"></i>
-                分类
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="https://github.com/zzzmj" target="_blank">
-                <i class="icon icon-lg icon-github"></i>
-                Github
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/custom">
-                <i class="icon icon-lg icon-link"></i>
-                测试
-              </a>
-            </li>
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="http://github.com/zzzmj">项目</a></li>
         
       </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/12/03/蓝桥杯历届试题-剪格子-Java实现/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/11/26/test-my-site/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/11/29/使用GitHub和Hexo搭建博客/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/11/29/使用GitHub和Hexo搭建博客/&text=使用GitHub和Hexo搭建博客"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/11/29/使用GitHub和Hexo搭建博客/&title=使用GitHub和Hexo搭建博客"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/11/29/使用GitHub和Hexo搭建博客/&is_video=false&description=使用GitHub和Hexo搭建博客"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=使用GitHub和Hexo搭建博客&body=Check out this article: http://yoursite.com/2018/11/29/使用GitHub和Hexo搭建博客/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/11/29/使用GitHub和Hexo搭建博客/&title=使用GitHub和Hexo搭建博客"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/11/29/使用GitHub和Hexo搭建博客/&title=使用GitHub和Hexo搭建博客"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/11/29/使用GitHub和Hexo搭建博客/&title=使用GitHub和Hexo搭建博客"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/11/29/使用GitHub和Hexo搭建博客/&title=使用GitHub和Hexo搭建博客"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/11/29/使用GitHub和Hexo搭建博客/&name=使用GitHub和Hexo搭建博客&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
     </div>
-  </div>
-</aside>
-
-    <main id="main">
-        <header class="top-header" id="header">
-    <div class="flex-row">
-        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
-          <i class="icon icon-lg icon-navicon"></i>
-        </a>
-        <div class="flex-col header-title ellipsis">使用GitHub和Hexo搭建博客</div>
-        
-        <div class="search-wrap" id="search-wrap">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
-                <i class="icon icon-lg icon-chevron-left"></i>
-            </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
-                <i class="icon icon-lg icon-search"></i>
-            </a>
-        </div>
-        
-        
-        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
-            <i class="icon icon-lg icon-share-alt"></i>
-        </a>
-        
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-前言"><span class="toc-number">1.</span> <span class="toc-text">1. 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-准备工作"><span class="toc-number">2.</span> <span class="toc-text">2. 准备工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-使用hexo"><span class="toc-number">3.</span> <span class="toc-text">3. 使用hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-使用github"><span class="toc-number">4.</span> <span class="toc-text">4. 使用github</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-使用git将网页推送到github上"><span class="toc-number">5.</span> <span class="toc-text">5. 使用git将网页推送到github上</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-更改主题"><span class="toc-number">6.</span> <span class="toc-text">5. 更改主题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-怎么发布我们的文章"><span class="toc-number">7.</span> <span class="toc-text">6. 怎么发布我们的文章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-遇到的问题"><span class="toc-number">8.</span> <span class="toc-text">7. 遇到的问题</span></a></li></ol>
     </div>
-</header>
-<header class="content-header post-header">
-
-    <div class="container fade-scale">
-        <h1 class="title">使用GitHub和Hexo搭建博客</h1>
-        <h5 class="subtitle">
-            
-                <time datetime="2018-11-29T05:31:46.000Z" itemprop="datePublished" class="page-time">
-  2018-11-29
-</time>
-
-
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
-
-            
-        </h5>
-    </div>
+  </span>
+</div>
 
     
-
-
-</header>
-
-
-<div class="container body-wrap">
+    <div class="content index py4">
+        
+        <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
+  <header>
     
-    <aside class="post-widget">
-        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
-            <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. 前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-准备工作"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. 准备工作</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-使用hexo"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. 使用hexo</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-使用github"><span class="post-toc-number">4.</span> <span class="post-toc-text">4. 使用github</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-使用git将网页推送到github上"><span class="post-toc-number">5.</span> <span class="post-toc-text">5. 使用git将网页推送到github上</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-更改主题"><span class="post-toc-number">6.</span> <span class="post-toc-text">5. 更改主题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-怎么发布我们的文章"><span class="post-toc-number">7.</span> <span class="post-toc-text">6. 怎么发布我们的文章</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7-遇到的问题"><span class="post-toc-number">8.</span> <span class="post-toc-text">7. 遇到的问题</span></a></li></ol>
-        </nav>
-    </aside>
-
-
-<article id="post-使用GitHub和Hexo搭建博客" class="post-article article-type-post fade" itemprop="blogPost">
-
-    <div class="post-card">
-        <h1 class="post-card-title">使用GitHub和Hexo搭建博客</h1>
-        <div class="post-meta">
-            <time class="post-time" title="2018-11-29 13:31:46" datetime="2018-11-29T05:31:46.000Z" itemprop="datePublished">2018-11-29</time>
-
-            
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+    <h1 class="posttitle" itemprop="name headline">
+        使用GitHub和Hexo搭建博客
+    </h1>
 
 
 
-            
-<span id="busuanzi_container_page_pv" title="文章总阅读量" style="display:none">
-    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
-</span>
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+        <span itemprop="name">你好,世界</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-11-29T05:31:46.000Z" itemprop="datePublished">2018-11-29</time>
+    </div>
 
 
-        </div>
-        <div class="post-content" id="post-content" itemprop="postContent">
-            <h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a>1. 前言</h2><p>使用<code>GitHub</code>和<code>Hexo</code>搭建博客, 也就是本博客的搭建过程</p>
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/前端/">前端</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/git/">git</a>, <a class="tag-link" href="/tags/github/">github</a>, <a class="tag-link" href="/tags/搭建博客/">搭建博客</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a>1. 前言</h2><p>使用<code>GitHub</code>和<code>Hexo</code>搭建博客, 也就是本博客的搭建过程</p>
 <h2 id="2-准备工作"><a href="#2-准备工作" class="headerlink" title="2. 准备工作"></a>2. 准备工作</h2><ul>
 <li>我们要使用<code>hexo</code>这个框架来做我们的静态网页，因为是基于<code>node.js</code>开发的，所以我们安装好<code>node.js</code></li>
 <li>然后我们用<code>github</code>来做网站，所以要有<code>github</code>账号</li>
@@ -283,333 +240,116 @@
 <p>修改 <code>hexo/source/categories/index.md</code> 的元数据</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">layout: categories</span><br><span class="line">comments: false</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
 
-        </div>
-
-        <blockquote class="post-copyright">
-    
-    <div class="content">
-        
-<span class="post-time">
-    最后更新时间：<time datetime="2018-11-29T10:02:32.003Z" itemprop="dateUpdated">2018-11-29 18:02:32</time>
-</span><br>
-
-
-        
-    </div>
-    
-    <footer>
-        <a href="http://yoursite.com">
-            <img src="/img/avatar.jpg" alt="zzzmj">
-            zzzmj
-        </a>
-    </footer>
-</blockquote>
-
-        
-<div class="page-reward">
-    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
-</div>
-
-
-
-        <div class="post-footer">
-            
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/搭建博客/">搭建博客</a></li></ul>
-
-
-            
-<div class="page-share-wrap">
-    
-
-<div class="page-share" id="pageShare">
-    <ul class="reset share-icons">
-      <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/11/29/使用GitHub和Hexo搭建博客/&title=《使用GitHub和Hexo搭建博客》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
-          <i class="icon icon-weibo"></i>
-        </a>
-      </li>
-      <li>
-        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
-          <i class="icon icon-weixin"></i>
-        </a>
-      </li>
-      <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/11/29/使用GitHub和Hexo搭建博客/&title=《使用GitHub和Hexo搭建博客》 — Hexo&source=" data-title=" QQ">
-          <i class="icon icon-qq"></i>
-        </a>
-      </li>
-      <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/11/29/使用GitHub和Hexo搭建博客/" data-title=" Facebook">
-          <i class="icon icon-facebook"></i>
-        </a>
-      </li>
-      <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用GitHub和Hexo搭建博客》 — Hexo&url=http://yoursite.com/2018/11/29/使用GitHub和Hexo搭建博客/&via=http://yoursite.com" data-title=" Twitter">
-          <i class="icon icon-twitter"></i>
-        </a>
-      </li>
-      <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/11/29/使用GitHub和Hexo搭建博客/" data-title=" Google+">
-          <i class="icon icon-google-plus"></i>
-        </a>
-      </li>
-    </ul>
- </div>
-
-
-
-    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
-        <i class="icon icon-share-alt icon-lg"></i>
-    </a>
-</div>
-
-
-
-        </div>
-    </div>
-
-    
-<nav class="post-nav flex-row flex-justify-between">
-  
-    <div class="waves-block waves-effect prev">
-      <a href="/2018/12/03/蓝桥杯历届试题-剪格子-Java实现/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">蓝桥杯历届试题 剪格子 Java实现</h4>
-      </a>
-    </div>
-  
-
-  
-    <div class="waves-block waves-effect next">
-      <a href="/2018/11/26/test-my-site/" id="post-next" class="post-nav-link">
-        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">test_my_site</h4>
-      </a>
-    </div>
-  
-</nav>
-
-
-
-    
-
-
-<section class="comments" id="comments">
-    <div id="disqus_thread"></div>
-    <script>
-    var disqus_shortname = 'true';
-    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</section>
-
-
-
-
-
-
-
-
-
-
-    <!-- Valine Comments -->
-    <div class="comments vcomment" id="comments"></div>
-    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
-    <!-- Valine Comments script -->
-    <script>
-        var GUEST_INFO = ['nick','mail','link'];
-        var guest_info = 'nick'.split(',').filter(function(item){
-          return GUEST_INFO.indexOf(item) > -1
-        });
-        new Valine({
-            el: '#comments',
-            notify: 'true' == 'true',
-            verify: 'false' == 'true',
-            appId: "ueQDd8jwMyyv0oHizSQnj0fo-gzGzoHsz",
-            appKey: "707RqsgPxLXd5huWLerS00Oz",
-            avatar: "mm",
-            placeholder: "Just go go",
-            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
-            pageSize: "10"
-        })
-    </script>
-    <!-- Valine Comments end -->
-
-
-
-
-
-
-
+  </div>
 </article>
 
-<div id="reward" class="page-modal reward-lay">
-    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <h3 class="reward-title">
-        <i class="icon icon-quote-left"></i>
-        谢谢大爷~
-        <i class="icon icon-quote-right"></i>
-    </h3>
-    <div class="reward-content">
-        
-        <div class="reward-code">
-            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>加载评论需要在浏览器启用 JavaScript 脚本支持。</noscript>
         </div>
-        
-        <label class="reward-toggle">
-            <input id="rewardToggle" type="checkbox" class="reward-toggle-check" data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
-            <div class="reward-toggle-ctrol">
-                <span class="reward-toggle-item wechat">微信</span>
-                <span class="reward-toggle-label"></span>
-                <span class="reward-toggle-item alipay">支付宝</span>
-            </div>
-        </label>
-        
     </div>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="http://github.com/zzzmj">项目</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-前言"><span class="toc-number">1.</span> <span class="toc-text">1. 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-准备工作"><span class="toc-number">2.</span> <span class="toc-text">2. 准备工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-使用hexo"><span class="toc-number">3.</span> <span class="toc-text">3. 使用hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-使用github"><span class="toc-number">4.</span> <span class="toc-text">4. 使用github</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-使用git将网页推送到github上"><span class="toc-number">5.</span> <span class="toc-text">5. 使用git将网页推送到github上</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-更改主题"><span class="toc-number">6.</span> <span class="toc-text">5. 更改主题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-怎么发布我们的文章"><span class="toc-number">7.</span> <span class="toc-text">6. 怎么发布我们的文章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-遇到的问题"><span class="toc-number">8.</span> <span class="toc-text">7. 遇到的问题</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/11/29/使用GitHub和Hexo搭建博客/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/11/29/使用GitHub和Hexo搭建博客/&text=使用GitHub和Hexo搭建博客"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/11/29/使用GitHub和Hexo搭建博客/&title=使用GitHub和Hexo搭建博客"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/11/29/使用GitHub和Hexo搭建博客/&is_video=false&description=使用GitHub和Hexo搭建博客"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=使用GitHub和Hexo搭建博客&body=Check out this article: http://yoursite.com/2018/11/29/使用GitHub和Hexo搭建博客/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/11/29/使用GitHub和Hexo搭建博客/&title=使用GitHub和Hexo搭建博客"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/11/29/使用GitHub和Hexo搭建博客/&title=使用GitHub和Hexo搭建博客"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/11/29/使用GitHub和Hexo搭建博客/&title=使用GitHub和Hexo搭建博客"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/11/29/使用GitHub和Hexo搭建博客/&title=使用GitHub和Hexo搭建博客"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/11/29/使用GitHub和Hexo搭建博客/&name=使用GitHub和Hexo搭建博客&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
 </div>
 
-
-
-</div>
-
-        <footer class="footer">
-    <div class="top">
         
-<p>
-    <span id="busuanzi_container_site_uv" style="display:none">
-        站点总访客数：<span id="busuanzi_value_site_uv"></span>
-    </span>
-    <span id="busuanzi_container_site_pv" style="display:none">
-        站点总访问量：<span id="busuanzi_value_site_pv"></span>
-    </span>
-</p>
-
-
-        <p>
-            
-                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
-            
-            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
-        </p>
-    </div>
-    <div class="bottom">
-        <p><span>zzzmj &copy; 2015 - 2018</span>
-            <span>
-                
-                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
-            </span>
-        </p>
-    </div>
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 zzzmj
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="http://github.com/zzzmj">项目</a></li>
+        
+      </ul>
+    </nav>
+  </div>
 </footer>
 
-    </main>
-    <div class="mask" id="mask"></div>
-<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
-
-
-
-<div class="global-share" id="globalShare">
-    <ul class="reset share-icons">
-      <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/11/29/使用GitHub和Hexo搭建博客/&title=《使用GitHub和Hexo搭建博客》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
-          <i class="icon icon-weibo"></i>
-        </a>
-      </li>
-      <li>
-        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
-          <i class="icon icon-weixin"></i>
-        </a>
-      </li>
-      <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/11/29/使用GitHub和Hexo搭建博客/&title=《使用GitHub和Hexo搭建博客》 — Hexo&source=" data-title=" QQ">
-          <i class="icon icon-qq"></i>
-        </a>
-      </li>
-      <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/11/29/使用GitHub和Hexo搭建博客/" data-title=" Facebook">
-          <i class="icon icon-facebook"></i>
-        </a>
-      </li>
-      <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用GitHub和Hexo搭建博客》 — Hexo&url=http://yoursite.com/2018/11/29/使用GitHub和Hexo搭建博客/&via=http://yoursite.com" data-title=" Twitter">
-          <i class="icon icon-twitter"></i>
-        </a>
-      </li>
-      <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/11/29/使用GitHub和Hexo搭建博客/" data-title=" Google+">
-          <i class="icon icon-google-plus"></i>
-        </a>
-      </li>
-    </ul>
- </div>
-
-
-<div class="page-modal wx-share" id="wxShare">
-    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtElEQVR42u3aQY7CQAwEQP7/afaKhAJtewysVJzQbpRM5TAe2r7d4s/94fP8l+f/Pl6T3ye58rbxwcPDwxss/Wq5rx/z+srXL+VqPfmd39wTDw8Pb42XPOb19l19BfmrzIsEHh4e3m/yks09ORYnx2s8PDy8/86bf48WFFyJh4eH9wu85JhbjVaTTT85oH8oa8HDw8PrnIHLm/K3vq/09/Dw8PDGXfXqcEAyOlAdR5isFg8PD2+D12vVT66sDhDkx/rLJ+Lh4eEt8zaGBuaBbO914OHh4W3wqlttoe0UJwO9KKSZT+Ph4eEd4iUFID/s9kKKXjl587rx8PDwFni9Y25yyJ4XmPwAHRUYPDw8vEO8XpCabOh5yDspNoX+Hh4eHt4HedUmVvVonkcM5XKCh4eHt8CbR7rVMak86k2O/oWAGA8PD+8Qbz4QkCwluWdSTsplAw8PD2+Z1xuiyltfZ8cLoqfg4eHhrfE2FpFfc2ol5XePh4eHd4jXC0knyF7QEL0aPDw8vDVeNWKYjG3Nj+aFgQM8PDy8Bd4kboga9vF9qqMDhSM4Hh4e3lFetdmfRKvJg6vH9GbbDA8PD2+BN4kSqgNV+eael5CovOHh4eEt8CZDAIVQ9VC8m4e5eHh4eBu83q2TRZ/KBHqHezw8PLw9XvPnfYvdKxuT9hgeHh7eBi9vzyc/+/OwoHfPpLxdDg3g4eHhHeLlxaAX4E5Ch1MDW3h4eHhneffiJ39Mr31VDX9v1QXh4eHhjXmTzXc+FlDIS4pNODw8PLxtXlIMeht6jsmj27xthoeHh7fNO9U/OhXsVgtG1AbDw8PD+zivN8zaW2ivOF02wPDw8PC+xDsby1aP1EkZwMPDw/skL9+U8407Ga7Kl9t8Lh4eHt4CL2+A5VHCqeihih/19/Dw8PDe3/MPsqDkKQOLuxAAAAAASUVORK5CYII=" alt="微信分享二维码">
-</div>
-
-
-
-
-    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-<script>
-var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
-
-
-</script>
-
-<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
-
-
-<div class="search-panel" id="search-panel">
-    <ul class="search-result" id="search-result"></ul>
-</div>
-<template id="search-tpl">
-<li class="item">
-    <a href="{path}" class="waves-block waves-effect">
-        <div class="title ellipsis" title="{title}">{title}</div>
-        <div class="flex-row flex-middle">
-            <div class="tags ellipsis">
-                {tags}
-            </div>
-            <time class="flex-col time">{date}</time>
-        </div>
-    </a>
-</li>
-</template>
-
-<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
-
-
-
-
-
-
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-
-
-<script>
-(function() {
-    var OriginTitile = document.title, titleTime;
-    document.addEventListener('visibilitychange', function() {
-        if (document.hidden) {
-            document.title = '死鬼去哪里了！';
-            clearTimeout(titleTime);
-        } else {
-            document.title = '(つェ⊂)咦!又好了!';
-            titleTime = setTimeout(function() {
-                document.title = OriginTitile;
-            },2000);
-        }
-    });
-})();
-</script>
-
-
-
+    </div>
 </body>
 </html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'cactus-1';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
