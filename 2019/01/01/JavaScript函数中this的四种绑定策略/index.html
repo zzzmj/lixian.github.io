@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="你好,世界">
 <meta property="og:description" content="this的四种绑定策略 默认绑定 隐式绑定 显示绑定 new绑定  1. 默认绑定当一个函数没有明确的调用对象的时候，也就是单纯作为独立函数调用的时候，将对函数的this使用默认绑定：绑定到全局的window对象 123456// 第一个例子var foo = function() &amp;#123;    console.log(this.a);&amp;#125;var a = 2foo() // 2 12">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-01T06:44:46.750Z">
+<meta property="og:updated_time" content="2019-01-01T10:03:24.796Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript函数中this的四种绑定策略">
 <meta name="twitter:description" content="this的四种绑定策略 默认绑定 隐式绑定 显示绑定 new绑定  1. 默认绑定当一个函数没有明确的调用对象的时候，也就是单纯作为独立函数调用的时候，将对函数的this使用默认绑定：绑定到全局的window对象 123456// 第一个例子var foo = function() &amp;#123;    console.log(this.a);&amp;#125;var a = 2foo() // 2 12">
@@ -72,6 +72,8 @@
     <br>
     <span id="actions">
       <ul>
+        
+        <li><a class="icon" href="/2019/01/10/JS中typeof和instanceof的区别/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
         <li><a class="icon" href="/2018/12/20/for-循环中的setTimeout-function-异步问题/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
@@ -194,6 +196,7 @@
 </ol>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.a = a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> bar = <span class="keyword">new</span> foo(<span class="number">2</span>)</span><br><span class="line"><span class="built_in">console</span>.log(bar.a) <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
 <h3 id="5-优先级"><a href="#5-优先级" class="headerlink" title="5. 优先级"></a>5. 优先级</h3><p><strong>new绑定 &gt; 显示绑定 &gt; 隐式绑定 &gt; 默认绑定</strong></p>
+<p>默认绑定在严格模式下会绑定到undefined, 否则绑定到全局对象</p>
 <p>参考资料：<br><a href="https://book.douban.com/subject/26351021/" target="_blank" rel="noopener">你不知道的JavaScript(上卷)</a><br><a href="http://www.cnblogs.com/penghuwan/p/7356210.html" target="_blank" rel="noopener">【javascript】函数中的this的四种绑定形式</a></p>
 
   </div>
