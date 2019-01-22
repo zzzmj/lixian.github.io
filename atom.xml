@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-01-10T09:00:32.102Z</updated>
+  <updated>2019-01-22T13:11:44.633Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>欧拉函数及其计算</title>
+    <link href="http://yoursite.com/2019/01/22/%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0%E5%8F%8A%E5%85%B6%E8%AE%A1%E7%AE%97/"/>
+    <id>http://yoursite.com/2019/01/22/欧拉函数及其计算/</id>
+    <published>2019-01-22T13:11:29.000Z</published>
+    <updated>2019-01-22T13:11:44.633Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="欧拉函数"><a href="#欧拉函数" class="headerlink" title="欧拉函数"></a>欧拉函数</h2><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1. 定义"></a>1. 定义</h2><p>什么是欧拉函数？</p><blockquote><p> 任意给定正整数n，请问在小于等于n的正整数之中，有多少个与n构成互质关系？（比如，在1到8之中，有多少个数与8构成互质关系？）</p></blockquote><p>计算这个值的方法就叫做欧拉函数，用<code>φ(n)</code>表示。在1到8之中，与8形成互质关系的是1、3、5、7，所以 <code>φ(n)</code> = 4。</p><h2 id="2-计算"><a href="#2-计算" class="headerlink" title="2. 计算"></a>2. 计算</h2><p>欧拉函数计算公式<br><img src="https://box.kancloud.cn/2015-08-04_55c058b16129e.png" alt=""><br>这个p是什么呢？</p><p>一个正整数 n 可以通过分解质因数得到<br><img src="https://box.kancloud.cn/2015-08-04_55c057f99f735.png" alt=""><br>例如<code>n = 100</code>我们就可以写成 <code>100 = 2^2 + 5^2</code></p><p>欧拉值 <code>φ(n) = 100 * (1- 1/2) * (1 - 1/5)</code>  </p><p>那么知道了这个公式，我们怎么去计算呢</p><p>大致的几步<br>找到因子<br>将把<code>(1- 1/p)</code>转换为<code>(p - 1) / p</code><br>然后把相同的因子筛去</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">euler</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans = n;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i*i &lt;= ans; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (n % i == <span class="number">0</span>) &#123;   </span><br><span class="line">            ans = ans / i * (i<span class="number">-1</span>);</span><br><span class="line">            <span class="comment">// 将相同的因子除去</span></span><br><span class="line">            <span class="keyword">while</span> (n % i == <span class="number">0</span>) &#123;</span><br><span class="line">                n /= i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (n &gt; <span class="number">1</span>) &#123;</span><br><span class="line">        ans = ans / n * (n<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>由于本文主要目的是讲如何计算，欧拉函数公式的推导过程可以参考维基百科：<a href="https://zh.wikipedia.org/wiki/%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0" target="_blank" rel="noopener">欧拉函数</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;欧拉函数&quot;&gt;&lt;a href=&quot;#欧拉函数&quot; class=&quot;headerlink&quot; title=&quot;欧拉函数&quot;&gt;&lt;/a&gt;欧拉函数&lt;/h2&gt;&lt;h2 id=&quot;1-定义&quot;&gt;&lt;a href=&quot;#1-定义&quot; class=&quot;headerlink&quot; title=&quot;1. 定义&quot;&gt;&lt;/
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>JS中typeof和instanceof的区别</title>
