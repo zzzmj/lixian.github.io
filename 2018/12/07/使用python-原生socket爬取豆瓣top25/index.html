@@ -97,7 +97,7 @@
 
 
   <meta name="description" content="了解底层socket原理, 有助于理解网络知识这是一个客户端的编写。 socket通信流程 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818">
-<meta name="keywords" content="爬虫,python,socket">
+<meta name="keywords" content="python,socket,爬虫">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用python 原生socket爬取豆瓣top250 (客户端)">
 <meta property="og:url" content="http://yoursite.com/2018/12/07/使用python-原生socket爬取豆瓣top25/index.html">
@@ -429,9 +429,32 @@
           
             
             
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2018/12/07/使用python-原生socket爬取豆瓣top25/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/12/07/使用python-原生socket爬取豆瓣top25/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
+          
+            <span id="/2018/12/07/使用python-原生socket爬取豆瓣top25/" class="leancloud_visitors" data-flag-title="使用python 原生socket爬取豆瓣top250 (客户端)">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
           
 
           
@@ -479,11 +502,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/爬虫/" rel="tag"># 爬虫</a>
-          
             <a href="/tags/python/" rel="tag"># python</a>
           
             <a href="/tags/socket/" rel="tag"># socket</a>
+          
+            <a href="/tags/爬虫/" rel="tag"># 爬虫</a>
           
         </div>
       
@@ -529,6 +552,10 @@
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+    </div>
 
   
 
@@ -844,6 +871,35 @@
 
 
   
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'ueQDd8jwMyyv0oHizSQnj0fo-gzGzoHsz',
+    appKey: '707RqsgPxLXd5huWLerS00Oz',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true
+  });
+</script>
+
+
 
 
   
