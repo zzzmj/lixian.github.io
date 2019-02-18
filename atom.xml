@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-01-27T13:13:14.847Z</updated>
+  <updated>2019-02-18T01:34:48.980Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CSS 清除浮动原理详解</title>
+    <link href="http://yoursite.com/2019/02/18/CSS-%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8%E5%8E%9F%E7%90%86%E8%AF%A6%E8%A7%A3/"/>
+    <id>http://yoursite.com/2019/02/18/CSS-清除浮动原理详解/</id>
+    <published>2019-02-18T01:34:23.000Z</published>
+    <updated>2019-02-18T01:34:48.980Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="CSS-清除浮动原理详解"><a href="#CSS-清除浮动原理详解" class="headerlink" title="CSS 清除浮动原理详解"></a>CSS 清除浮动原理详解</h2><h3 id="一-浮动float"><a href="#一-浮动float" class="headerlink" title="一. 浮动float"></a>一. 浮动float</h3><p>float属性的本质是用来实现文字环绕效果的。<br>它有一个很大的副作用：会导致父容器的高度坍塌</p><p>疑问：</p><ol><li>那么将父容器固定高度有用吗？<br>没用，因为只要浮动元素的区域超过了这个高度，依旧会出现环绕效果影响布局</li></ol><p>那么怎么解决这个问题呢？<br>清除浮动方法很多，但本质上只有两种方法</p><ol><li>使用<code>clear</code>清除浮动</li><li>形成<code>BFC</code></li></ol><h3 id="1-1-使用clear清除浮动"><a href="#1-1-使用clear清除浮动" class="headerlink" title="1.1 使用clear清除浮动"></a>1.1 使用clear清除浮动</h3><p><code>clear</code> 属性是 CSS 专门用来处理 <code>float</code>引起的高度坍塌问题</p><p>语法：</p><blockquote><p>clear: none | left | right | both </p></blockquote><p>使用<code>clear: both</code>就可以, <code>left</code>和<code>right</code>可以完全被替代</p><p>使用clear要注意的地方</p><ol><li>clear只会清除自身所在<strong>前面的</strong>元素的浮动</li><li>clear属性只作用在<strong>块级元素</strong>上</li></ol><p>因为clear只会清除前面元素的浮动，因此我们要在容器的最后面添加一个<strong>块级元素</strong>，并让该元素使用<code>clear: both</code>属性</p><p>最常见的做法就是在父容器身上使用<code>::after</code><br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#container</span><span class="selector-pseudo">::after</span> &#123; </span><br><span class="line">    <span class="attribute">content</span>: <span class="string">""</span>;</span><br><span class="line">    <span class="attribute">display</span>: block; </span><br><span class="line">    <span class="attribute">clear</span>: both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>因为clear只作用在块级元素上, <code>::after</code>等伪元素都是内联的<br>所以我们要加上这两行<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">content</span>: "";</span><br><span class="line"><span class="selector-tag">display</span>: <span class="selector-tag">block</span>;</span><br></pre></td></tr></table></figure></p><h3 id="1-2-使用BFC清除浮动"><a href="#1-2-使用BFC清除浮动" class="headerlink" title="1.2 使用BFC清除浮动"></a>1.2 使用BFC清除浮动</h3><p>BFC全称为 <code>block formatting context</code>, 中文为”块级格式化上下文”</p><blockquote><p>性质：如果一个元素触发了 BFC , 那么该元素会形成一个独立容器, 不会影响到外界元素<br>只要触发了 BFC , 元素就不会因为 float 引起高度坍塌</p></blockquote><p><strong>如何触发BFC</strong><br>以下规则只要满足任意一条，即可触发</p><ol><li><html>根元素</html></li><li>float 的值不为 none</li><li>overflow 的值为 auto、scroll 或 hidden</li><li>display 的值为 table-cell、table-caption 和 inline-block 中的任何一个</li><li>position 的值不为 relative 和 static</li></ol><p><strong>BFC的一些特性</strong></p><ol><li>计算BFC高度时，浮动元素也会参与计算(用来解决父元素高度塌陷问题）</li><li>是一个独立的容器，外面元素不会影响他里面的元素</li><li>BFC元素不会与浮动元素的盒子相互重叠（解决兄弟元素排版混乱问题）</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;CSS-清除浮动原理详解&quot;&gt;&lt;a href=&quot;#CSS-清除浮动原理详解&quot; class=&quot;headerlink&quot; title=&quot;CSS 清除浮动原理详解&quot;&gt;&lt;/a&gt;CSS 清除浮动原理详解&lt;/h2&gt;&lt;h3 id=&quot;一-浮动float&quot;&gt;&lt;a href=&quot;#一-浮动
+      
+    
+    </summary>
+    
+      <category term="css" scheme="http://yoursite.com/categories/css/"/>
+    
+    
+      <category term="float" scheme="http://yoursite.com/tags/float/"/>
+    
+  </entry>
   
   <entry>
     <title>JavaScript 模拟实现call和apply</title>
