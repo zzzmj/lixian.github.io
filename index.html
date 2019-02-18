@@ -347,6 +347,191 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/18/CSS世界-笔记-第三章：流、元素与基本尺寸/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zzzmj">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/a.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="你好,世界">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/18/CSS世界-笔记-第三章：流、元素与基本尺寸/" class="post-title-link" itemprop="url"><<css世界>>笔记 第三章：流、元素与基本尺寸</css世界></a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-18 10:14:42 / 修改时间：11:57:48" itemprop="dateCreated datePublished" datetime="2019-02-18T10:14:42+08:00">2019-02-18</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2019/02/18/CSS世界-笔记-第三章：流、元素与基本尺寸/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/02/18/CSS世界-笔记-第三章：流、元素与基本尺寸/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2019/02/18/CSS世界-笔记-第三章：流、元素与基本尺寸/" class="leancloud_visitors" data-flag-title="<<CSS世界>>笔记 第三章：流、元素与基本尺寸">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>读&lt;&lt;CSS世界&gt;&gt;的笔记, 结合书本做了一些总结, 也查阅了一些其他的资料</p>
+<h2 id="1-元素的显示类型"><a href="#1-元素的显示类型" class="headerlink" title="1. 元素的显示类型"></a>1. 元素的显示类型</h2><p>通常来说，元素分为块级元素和内联元素两种</p>
+<p>使用 <code>display</code> 属性可以指定了元素的显示类型</p>
+<div class="note info">
+            <h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><p>display: block | inline | inline-block</p>
+          </div>
+<span class="label info">块级元素(block)</span>的特点：<br>1. 每个块级元素会从新的一行开始<br>2. 存在盒模型，可设置宽高和内外边距<br>3. <strong>宽度不设置的情况下，是父容器的100%</strong><br><br><span class="label info">内联元素(inline)</span>的特点：<br>1. 与其他内联元素显示在一行上<br>2. 没有盒模型<br>3. <strong>元素宽度就是它包含的文字或图片宽度，不可变</strong><br><br><span class="label info">行内块元素(inline-block)</span>的特点:<br>1. 与行内块元素, 内联元素显示在一行上<br>2. 存在盒模型<br><br><div class="note default">
+            <h4 id="常见的块级元素："><a href="#常见的块级元素：" class="headerlink" title="常见的块级元素："></a>常见的块级元素：</h4><ul><li>div</li><li>p</li><li>ul</li><li>section</li></ul><h4 id="常见的内联元素："><a href="#常见的内联元素：" class="headerlink" title="常见的内联元素："></a>常见的内联元素：</h4><ul><li>a</li><li>img</li><li>span</li><li>button</li><li>input</li></ul>
+          </div>
+<h2 id="width-height的作用细节"><a href="#width-height的作用细节" class="headerlink" title="width/height的作用细节"></a>width/height的作用细节</h2><p>张老师在这一块讲的很杂糅, 总结了一下, 大概有这几点</p>
+<ol>
+<li><p><strong>宽度分离原则</strong>：CSS 中的 width 属性不与影响宽度的 padding/border 属性共存<br>也就是说将宽度控制放在父容器, 子元素来实现padding和border</p>
+</li>
+<li><p>box-sizing 会改变 width/height<br>准确来说是这个属性<code>box-sizing: content-box;</code>, 也是默认属性<br>使用了该属性：真实容器的宽会等于 = width + <code>border*2</code> + <code>padding*2</code><br>最好使用<code>box-sizing: border-box</code>, 这样真实容器的宽度 = width</p>
+</li>
+<li><p>height:100% 失效<br>如果父容器的高度没有设置为默认值, height会失效</p>
+</li>
+<li><p>权重 min &gt; max &gt; !important<br>min-width/height &gt; max-width/height &gt; !important</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/18/CSS-清除浮动原理详解/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2202,230 +2387,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/03/二叉树的三种遍历方式详解/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zzzmj">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/a.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="你好,世界">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/12/03/二叉树的三种遍历方式详解/" class="post-title-link" itemprop="url">二叉树的三种遍历方式详解</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-12-03 20:12:32 / 修改时间：21:26:47" itemprop="dateCreated datePublished" datetime="2018-12-03T20:12:32+08:00">2018-12-03</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/数据结构/" itemprop="url" rel="index"><span itemprop="name">数据结构</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <a href="/2018/12/03/二叉树的三种遍历方式详解/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/12/03/二叉树的三种遍历方式详解/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-            <span id="/2018/12/03/二叉树的三种遍历方式详解/" class="leancloud_visitors" data-flag-title="二叉树的三种遍历方式详解">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读次数：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="二叉树的遍历"><a href="#二叉树的遍历" class="headerlink" title="二叉树的遍历"></a>二叉树的遍历</h2><p>二叉树的遍历方式一般有四种：</p>
-<ul>
-<li>先序遍历</li>
-<li>中序遍历</li>
-<li>后序遍历</li>
-<li>层序遍历<br>因为前三种遍历方式都是采用了递归的方法进行遍历, 这里只介绍前三种</li>
-</ul>
-<p><code>图1：</code><br><img src="http://wx2.sinaimg.cn/mw690/006PpBLogy1fxttx5k6tuj30f10bfq37.jpg" alt=""></p>
-<h2 id="先序遍历"><a href="#先序遍历" class="headerlink" title="先序遍历"></a>先序遍历</h2><p>前序遍历:<br>1.访问根节点。2.访问左子树。3.访问右子树</p>
-<p>按照图1, 前序遍历的的遍历方式是</p>
-<blockquote>
-<p>ABDECF</p>
-</blockquote>
-<h2 id="中序遍历"><a href="#中序遍历" class="headerlink" title="中序遍历"></a>中序遍历</h2><p>前序遍历:<br>1.访问左子树。2.访问根节点。3.访问右子树</p>
-<p>按照图1, 中序遍历的遍历方式是</p>
-<blockquote>
-<p>DBEACF</p>
-</blockquote>
-<h3 id="中序遍历的性质"><a href="#中序遍历的性质" class="headerlink" title="中序遍历的性质"></a>中序遍历的性质</h3><p>由于中序遍历总是把根结点放在左子树和右子树的中间, 因此只要知道根结点，就可以利用该性质还原出整颗二叉树</p>
-<p>至于如何知道根结点，我们可以通过先序序列或者后序序列</p>
-<p>因此：只要知道<code>前序+中序</code>或者<code>中序+后序</code> 我们就能还原二叉树</p>
-<p>但是<code>前序+中序</code> 是做不到的</p>
-<h2 id="后序遍历"><a href="#后序遍历" class="headerlink" title="后序遍历"></a>后序遍历</h2><p>后序遍历:<br>1.访问左子树。2.访问右子树。 3.访问根节点。</p>
-<p>按照图1, 中序遍历的遍历方式是</p>
-<blockquote>
-<p>DEBFCA</p>
-</blockquote>
-<h2 id="重建二叉树"><a href="#重建二叉树" class="headerlink" title="重建二叉树"></a>重建二叉树</h2><p>给定后序序列和中序序列, 重建这颗二叉树</p>
-<p><strong>后序遍历: ACBFGED</strong></p>
-<p><strong>中序遍历: ABCDEFG</strong></p>
-<p>先用手工试算出这个前序序列</p>
-<ol>
-<li><p>第一步: 由后序遍历的最后一个元素知道整棵树最初的根节点为D<br><img src="http://wx3.sinaimg.cn/mw690/006PpBLogy1fxtvfh93sdj3058060mx4.jpg" alt=""></p>
-</li>
-<li><p>第二步:<br>由中序序列知道左子树是｛A,B,C｝， 右子树是｛E,F,G｝</p>
-</li>
-</ol>
-<p>重复一二两步，知道E是右子树的根节点，并存在右子树，没有左子树</p>
-<p>反复套用一二两步规则，最终可得到整颗树<br><img src="http://wx3.sinaimg.cn/mw690/006PpBLogy1fxtvg2hyadj307g08ydfx.jpg" alt=""></p>
-<h2 id="例题：PAT-1020-Tree-Traversals-（25-分）"><a href="#例题：PAT-1020-Tree-Traversals-（25-分）" class="headerlink" title="例题：PAT 1020 Tree Traversals （25 分）"></a>例题：PAT 1020 Tree Traversals （25 分）</h2><p>给定后序序列和中序序列，求层序序列</p>
-<p>思路：还原整个二叉树，再层序遍历求解层序序列</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2475,7 +2436,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

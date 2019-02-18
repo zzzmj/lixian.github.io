@@ -347,6 +347,230 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/03/二叉树的三种遍历方式详解/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zzzmj">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/a.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="你好,世界">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/12/03/二叉树的三种遍历方式详解/" class="post-title-link" itemprop="url">二叉树的三种遍历方式详解</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-03 20:12:32 / 修改时间：21:26:47" itemprop="dateCreated datePublished" datetime="2018-12-03T20:12:32+08:00">2018-12-03</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/数据结构/" itemprop="url" rel="index"><span itemprop="name">数据结构</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2018/12/03/二叉树的三种遍历方式详解/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/12/03/二叉树的三种遍历方式详解/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2018/12/03/二叉树的三种遍历方式详解/" class="leancloud_visitors" data-flag-title="二叉树的三种遍历方式详解">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="二叉树的遍历"><a href="#二叉树的遍历" class="headerlink" title="二叉树的遍历"></a>二叉树的遍历</h2><p>二叉树的遍历方式一般有四种：</p>
+<ul>
+<li>先序遍历</li>
+<li>中序遍历</li>
+<li>后序遍历</li>
+<li>层序遍历<br>因为前三种遍历方式都是采用了递归的方法进行遍历, 这里只介绍前三种</li>
+</ul>
+<p><code>图1：</code><br><img src="http://wx2.sinaimg.cn/mw690/006PpBLogy1fxttx5k6tuj30f10bfq37.jpg" alt=""></p>
+<h2 id="先序遍历"><a href="#先序遍历" class="headerlink" title="先序遍历"></a>先序遍历</h2><p>前序遍历:<br>1.访问根节点。2.访问左子树。3.访问右子树</p>
+<p>按照图1, 前序遍历的的遍历方式是</p>
+<blockquote>
+<p>ABDECF</p>
+</blockquote>
+<h2 id="中序遍历"><a href="#中序遍历" class="headerlink" title="中序遍历"></a>中序遍历</h2><p>前序遍历:<br>1.访问左子树。2.访问根节点。3.访问右子树</p>
+<p>按照图1, 中序遍历的遍历方式是</p>
+<blockquote>
+<p>DBEACF</p>
+</blockquote>
+<h3 id="中序遍历的性质"><a href="#中序遍历的性质" class="headerlink" title="中序遍历的性质"></a>中序遍历的性质</h3><p>由于中序遍历总是把根结点放在左子树和右子树的中间, 因此只要知道根结点，就可以利用该性质还原出整颗二叉树</p>
+<p>至于如何知道根结点，我们可以通过先序序列或者后序序列</p>
+<p>因此：只要知道<code>前序+中序</code>或者<code>中序+后序</code> 我们就能还原二叉树</p>
+<p>但是<code>前序+中序</code> 是做不到的</p>
+<h2 id="后序遍历"><a href="#后序遍历" class="headerlink" title="后序遍历"></a>后序遍历</h2><p>后序遍历:<br>1.访问左子树。2.访问右子树。 3.访问根节点。</p>
+<p>按照图1, 中序遍历的遍历方式是</p>
+<blockquote>
+<p>DEBFCA</p>
+</blockquote>
+<h2 id="重建二叉树"><a href="#重建二叉树" class="headerlink" title="重建二叉树"></a>重建二叉树</h2><p>给定后序序列和中序序列, 重建这颗二叉树</p>
+<p><strong>后序遍历: ACBFGED</strong></p>
+<p><strong>中序遍历: ABCDEFG</strong></p>
+<p>先用手工试算出这个前序序列</p>
+<ol>
+<li><p>第一步: 由后序遍历的最后一个元素知道整棵树最初的根节点为D<br><img src="http://wx3.sinaimg.cn/mw690/006PpBLogy1fxtvfh93sdj3058060mx4.jpg" alt=""></p>
+</li>
+<li><p>第二步:<br>由中序序列知道左子树是｛A,B,C｝， 右子树是｛E,F,G｝</p>
+</li>
+</ol>
+<p>重复一二两步，知道E是右子树的根节点，并存在右子树，没有左子树</p>
+<p>反复套用一二两步规则，最终可得到整颗树<br><img src="http://wx3.sinaimg.cn/mw690/006PpBLogy1fxtvg2hyadj307g08ydfx.jpg" alt=""></p>
+<h2 id="例题：PAT-1020-Tree-Traversals-（25-分）"><a href="#例题：PAT-1020-Tree-Traversals-（25-分）" class="headerlink" title="例题：PAT 1020 Tree Traversals （25 分）"></a>例题：PAT 1020 Tree Traversals （25 分）</h2><p>给定后序序列和中序序列，求层序序列</p>
+<p>思路：还原整个二叉树，再层序遍历求解层序序列</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/03/蓝桥杯历届试题-剪格子-Java实现/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1176,7 +1400,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

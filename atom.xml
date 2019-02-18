@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-02-18T01:34:48.980Z</updated>
+  <updated>2019-02-18T03:57:48.980Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>&lt;&lt;CSS世界&gt;&gt;笔记 第三章：流、元素与基本尺寸</title>
+    <link href="http://yoursite.com/2019/02/18/CSS%E4%B8%96%E7%95%8C-%E7%AC%94%E8%AE%B0-%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9A%E6%B5%81%E3%80%81%E5%85%83%E7%B4%A0%E4%B8%8E%E5%9F%BA%E6%9C%AC%E5%B0%BA%E5%AF%B8/"/>
+    <id>http://yoursite.com/2019/02/18/CSS世界-笔记-第三章：流、元素与基本尺寸/</id>
+    <published>2019-02-18T02:14:42.000Z</published>
+    <updated>2019-02-18T03:57:48.980Z</updated>
+    
+    <content type="html"><![CDATA[<p>读&lt;&lt;CSS世界&gt;&gt;的笔记, 结合书本做了一些总结, 也查阅了一些其他的资料</p><h2 id="1-元素的显示类型"><a href="#1-元素的显示类型" class="headerlink" title="1. 元素的显示类型"></a>1. 元素的显示类型</h2><p>通常来说，元素分为块级元素和内联元素两种</p><p>使用 <code>display</code> 属性可以指定了元素的显示类型</p><div class="note info">            <h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><p>display: block | inline | inline-block</p>          </div><span class="label info">块级元素(block)</span>的特点：<br>1. 每个块级元素会从新的一行开始<br>2. 存在盒模型，可设置宽高和内外边距<br>3. <strong>宽度不设置的情况下，是父容器的100%</strong><br><br><span class="label info">内联元素(inline)</span>的特点：<br>1. 与其他内联元素显示在一行上<br>2. 没有盒模型<br>3. <strong>元素宽度就是它包含的文字或图片宽度，不可变</strong><br><br><span class="label info">行内块元素(inline-block)</span>的特点:<br>1. 与行内块元素, 内联元素显示在一行上<br>2. 存在盒模型<br><br><div class="note default">            <h4 id="常见的块级元素："><a href="#常见的块级元素：" class="headerlink" title="常见的块级元素："></a>常见的块级元素：</h4><ul><li>div</li><li>p</li><li>ul</li><li>section</li></ul><h4 id="常见的内联元素："><a href="#常见的内联元素：" class="headerlink" title="常见的内联元素："></a>常见的内联元素：</h4><ul><li>a</li><li>img</li><li>span</li><li>button</li><li>input</li></ul>          </div><h2 id="width-height的作用细节"><a href="#width-height的作用细节" class="headerlink" title="width/height的作用细节"></a>width/height的作用细节</h2><p>张老师在这一块讲的很杂糅, 总结了一下, 大概有这几点</p><ol><li><p><strong>宽度分离原则</strong>：CSS 中的 width 属性不与影响宽度的 padding/border 属性共存<br>也就是说将宽度控制放在父容器, 子元素来实现padding和border</p></li><li><p>box-sizing 会改变 width/height<br>准确来说是这个属性<code>box-sizing: content-box;</code>, 也是默认属性<br>使用了该属性：真实容器的宽会等于 = width + <code>border*2</code> + <code>padding*2</code><br>最好使用<code>box-sizing: border-box</code>, 这样真实容器的宽度 = width</p></li><li><p>height:100% 失效<br>如果父容器的高度没有设置为默认值, height会失效</p></li><li><p>权重 min &gt; max &gt; !important<br>min-width/height &gt; max-width/height &gt; !important</p></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;读&amp;lt;&amp;lt;CSS世界&amp;gt;&amp;gt;的笔记, 结合书本做了一些总结, 也查阅了一些其他的资料&lt;/p&gt;
+&lt;h2 id=&quot;1-元素的显示类型&quot;&gt;&lt;a href=&quot;#1-元素的显示类型&quot; class=&quot;headerlink&quot; title=&quot;1. 元素的显示类型&quot;&gt;&lt;/a&gt;
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>CSS 清除浮动原理详解</title>
