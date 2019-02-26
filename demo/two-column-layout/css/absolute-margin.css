@@ -1,0 +1,8 @@
+.left {
+    box-sizing: border-box;
+    position: absolute;
+}
+
+.right {
+    margin-left: 120px;
+}

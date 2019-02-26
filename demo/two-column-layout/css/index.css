@@ -1,0 +1,17 @@
+.item {
+    margin: 15px 0px;
+}
+
+.container {
+    padding: 10px;
+    border: 1px dashed #dedede;
+}
+
+.left {
+    width: 120px;
+    border: 2px solid #2DB3E4;
+}
+
+.right {
+    border: 2px solid #F37EC1;
+}

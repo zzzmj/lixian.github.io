@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/two-float.css">
+    <link rel="stylesheet" href="css/float-margin.css">
+    <link rel="stylesheet" href="css/absolute-margin.css">
+    <link rel="stylesheet" href="css/float-bfc.css">
+    <link rel="stylesheet" href="css/flex.css">
+</head>
+<body>
+    <div class="item">
+        <span>选择样式方案: </span>
+        <select id="select-style">
+            <option value="1">双float方案</option>
+            <option value="2">float + margin-left方案</option>
+            <option value="3">absolute + margin-left方案</option>
+            <option value="4">float + bfc方案</option>
+            <option value="5">flex方案</option>
+        </select>
+    </div>
+    <div class="item">
+        <span>改变容器高度:</span>
+        <button class="btn-left">增加左侧内容</button>
+        <button class="btn-right">增加右侧内容</button>
+    </div>
+    <div class="container">
+        <div class="left">
+            <p>这是左边的盒子</p>
+        </div>
+        <div class="right">
+            <p>这是右边的盒子</p>
+        </div>
+    </div>
+
+    <script src="js/index.js"></script>
+</body>
+</html>

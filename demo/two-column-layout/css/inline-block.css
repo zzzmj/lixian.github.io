@@ -1,0 +1,9 @@
+.left {
+    box-sizing: border-box;
+    display: inline-block;
+}
+
+.right {
+    display: inline-block;
+    width: calc(100% - 130px);
+}
