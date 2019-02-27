@@ -1,0 +1,20 @@
+.container {
+    padding-left: 200px;
+    padding-right: 150px;
+}
+
+.left, .right {
+    position: relative;
+}
+
+.left {
+    margin-left: -100%;
+    left: -200px;
+}
+
+.right {
+    margin-left: -150px;
+    right: -150px;
+}
+
+

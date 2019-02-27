@@ -1,0 +1,17 @@
+.middle {
+    background-color: inherit;
+}
+
+.main {
+    margin-left: 200px;
+    margin-right: 150px;
+    background: #81B6AE;
+}
+
+.left {
+    margin-left: -100%;
+}
+
+.right {
+    margin-left: -150px;
+}

@@ -1,0 +1,38 @@
+.item {
+    margin: 15px 0px;
+}
+
+p {
+    margin: 0;
+    padding-bottom: 20px;
+}
+
+.container {
+    width: 800px;
+    border: 1px dashed #dedede;
+}
+
+.container::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.left {
+    width: 200px;
+    background: #2DB3E4;
+}
+
+.right {
+    width: 150px;
+    background: #F37EC1;
+}
+
+.middle {
+    width: 100%;
+    background: #81B6AE;
+}
+
+.left, .right, .middle {
+    float: left;
+}
