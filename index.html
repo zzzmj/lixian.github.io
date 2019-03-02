@@ -347,6 +347,412 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/02/React中的虚拟DOM和diff算法/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zzzmj">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/a.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="你好,世界">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/02/React中的虚拟DOM和diff算法/" class="post-title-link" itemprop="url">浅析React中的虚拟DOM和diff算法</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-02 15:38:37 / 修改时间：15:39:12" itemprop="dateCreated datePublished" datetime="2019-03-02T15:38:37+08:00">2019-03-02</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/React/" itemprop="url" rel="index"><span itemprop="name">React</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2019/03/02/React中的虚拟DOM和diff算法/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/03/02/React中的虚拟DOM和diff算法/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2019/03/02/React中的虚拟DOM和diff算法/" class="leancloud_visitors" data-flag-title="浅析React中的虚拟DOM和diff算法">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="虚拟DOM"><a href="#虚拟DOM" class="headerlink" title="虚拟DOM"></a>虚拟DOM</h2><p>React原理</p>
+<p>我们来想一下如何实现React</p>
+<p>第一种方案：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> state 数据</span><br><span class="line"><span class="number">2.</span> JSX 模板</span><br><span class="line"><span class="number">3.</span> 数据 + 模板 结合, 生成真实的DOM, 来显示</span><br><span class="line"><span class="number">4.</span> state 发生改变</span><br><span class="line"><span class="number">5.</span> 数据 + 模板 结合, 生成真实的DOM, 替换原始的DOM</span><br></pre></td></tr></table></figure></p>
+<p>但这种方案在第五步有着很大的性能缺陷<br>用新生成的DOM去替换原始的DOM, 非常消耗性能</p>
+<p>第二种方案<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> state 数据</span><br><span class="line"><span class="number">2.</span> JSX 模板</span><br><span class="line"><span class="number">3.</span> 数据 + 模板 结合, 生成真实的DOM, 来显示</span><br><span class="line"><span class="number">4.</span> state 发生改变</span><br><span class="line"><span class="number">5.</span> 数据 + 模板 结合, 生成真实的DOM, 并不直接替换原始的DOM</span><br><span class="line"><span class="number">6.</span> 新的DOM (DocumentFragment) 和原始的DOM 做比对，找差异</span><br><span class="line"><span class="number">7.</span> 找出有差异的DOM元素</span><br><span class="line"><span class="number">8.</span> 将有差异的DOM元素替换掉旧的DOM元素</span><br></pre></td></tr></table></figure></p>
+<p>这种方案同样存在缺陷<br>关键在于第六步，我们找新DOM和原始DOM的比对找差异过程中，也很消耗性能，性能提升并不明显</p>
+<p>第三种方案：虚拟DOM</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> state 数据</span><br><span class="line"><span class="number">2.</span> JSX 模板</span><br><span class="line"><span class="number">3.</span> 生成虚拟DOM(JS对象), 用js对象描述dom信息</span><br><span class="line">    &#123;</span><br><span class="line">        tag: <span class="string">'div'</span>,</span><br><span class="line">        attrs: &#123;<span class="attr">id</span>: <span class="string">'root'</span>&#125;,</span><br><span class="line">        children: [</span><br><span class="line">            &#123;</span><br><span class="line">                tag: <span class="string">'p'</span>,</span><br><span class="line">                children: [<span class="string">'hello, world'</span>]</span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line"><span class="number">4.</span> 借助虚拟DOM, 生成真实的DOM, 来显示</span><br><span class="line">    &lt;div id=<span class="string">'root'</span>&gt;&lt;p&gt;hello, world&lt;/p&gt;&lt;/div&gt;</span><br><span class="line"><span class="number">5.</span> state 发生改变</span><br><span class="line"><span class="number">6.</span> 生成新的虚拟DOM</span><br><span class="line"><span class="number">7.</span> 比较原始虚拟DOM和新的虚拟DOM的差异</span><br><span class="line"><span class="number">8.</span> 直接操作DOM，改变有差异的内容</span><br></pre></td></tr></table></figure>
+<p>优点：生成 js 对象很快, 所以在两个js对象中找差异 损耗性能很小<br>极大的提升了性能</p>
+<h2 id="diff算法"><a href="#diff算法" class="headerlink" title="diff算法"></a>diff算法</h2><p>diff算法用于比较虚拟dom之间的差异</p>
+<h3 id="1-逐级比较"><a href="#1-逐级比较" class="headerlink" title="1. 逐级比较"></a>1. 逐级比较</h3><p>diff算法通过逐级的去比较两颗节点树的差异，大大降低了复杂性<br><img src="https://user-gold-cdn.xitu.io/2017/11/3/7825c29127bf2cf4287780d644da88ec?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt=""></p>
+<h3 id="2-列表List"><a href="#2-列表List" class="headerlink" title="2. 列表List"></a>2. 列表List</h3><p>假设我们有一个组件，它在一个迭代中渲染了5个组件，而下一次渲染的时候在组件列表的中间插入一个新的组件。 只是通过这个信息真的很难知道如何在两个组件列表之间进行映射。<br>默认情况下，React将先前列表的第一个组件与下一个列表的第一个组件相关联，等等。您可以提供一个Key属性，以帮助React去找到他们的映射关系。 在实际中，这通常很容易把刚刚插入的组件从他们当中找出来。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/11/3/364a3aff44c097ca7061747ce829f04c?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt=""></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/02/从ES5的角度看ES6中的class/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zzzmj">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/a.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="你好,世界">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/02/从ES5的角度看ES6中的class/" class="post-title-link" itemprop="url">从ES5的角度看ES6中的class</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-02 15:37:16 / 修改时间：15:38:08" itemprop="dateCreated datePublished" datetime="2019-03-02T15:37:16+08:00">2019-03-02</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2019/03/02/从ES5的角度看ES6中的class/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/03/02/从ES5的角度看ES6中的class/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2019/03/02/从ES5的角度看ES6中的class/" class="leancloud_visitors" data-flag-title="从ES5的角度看ES6中的class">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>ES6的 class 是语法糖, 相当好用, 主要介绍几个关键的概念</p>
+<ol>
+<li>仿类结构</li>
+<li>类的声明</li>
+<li>静态成员</li>
+<li>类的继承</li>
+</ol>
+<h2 id="1-ES5-中的仿类结构"><a href="#1-ES5-中的仿类结构" class="headerlink" title="1. ES5 中的仿类结构"></a>1. ES5 中的仿类结构</h2><p>在ES6之前没有class语法, 我们仿写一个类结构<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Person = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> Person(<span class="string">'zmj'</span>)</span><br><span class="line">p.sayName()</span><br></pre></td></tr></table></figure></p>
+<p><code>Person</code>是一个构造函数, sayName()方法被指派到原型上, 因此<code>Person</code>的所有实例都共享了sayName方法</p>
+<h2 id="2-ES6-类的声明"><a href="#2-ES6-类的声明" class="headerlink" title="2. ES6 类的声明"></a>2. ES6 类的声明</h2><p>将上例改写成类<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 相当于 Person 的构造函数, 私有属性应该写在这里</span></span><br><span class="line">    <span class="keyword">constructor</span>(name) &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 相当于Person.prototype.sayName</span></span><br><span class="line">    sayName() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> Person(<span class="string">'zmj'</span>)</span><br><span class="line">p.sayName()</span><br></pre></td></tr></table></figure></p>
+<p>与ES5写法的区别:</p>
+<ol>
+<li>类声明不会被提升, 与 let 相似</li>
+<li>所有代码都处于严格模式</li>
+<li>不可枚举</li>
+</ol>
+<p>其实上面的类结构等价于下面的代码<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> Person = (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="meta">    "use strict"</span></span><br><span class="line">    <span class="keyword">const</span> Person = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">Object</span>.defineProperty(Person.prototype, <span class="string">'sayName'</span>, &#123;</span><br><span class="line">        value: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">        &#125;,</span><br><span class="line">        enumerable: <span class="literal">false</span>,</span><br><span class="line">        writable: <span class="literal">true</span>,</span><br><span class="line">        configurable: <span class="literal">true</span></span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> Person</span><br><span class="line">&#125;)()</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> p = <span class="keyword">new</span> Person(<span class="string">'zmj'</span>)</span><br><span class="line">p.sayName()</span><br></pre></td></tr></table></figure></p>
+<h2 id="3-静态成员"><a href="#3-静态成员" class="headerlink" title="3. 静态成员"></a>3. 静态成员</h2><p>首先要理解静态成员的含义.</p>
+<p>静态成员是类所有的, 不需要创建实例就可以调用(通过类名直接调用)</p>
+<p>在ES5中的例子<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Person = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.create = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Person(name)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> p = Person.create(<span class="string">'zmj'</span>)</span><br><span class="line">p.sayName()</span><br></pre></td></tr></table></figure></p>
+<p><code>Person.create</code>就是所谓的静态方法. 它的数据不依赖任何类的实例</p>
+<p>可以直接通过类名.方法名直接调用, 不需要new一个新的实例</p>
+<p>在ES6中简化了该操作, 只要在方法名上加上static即可.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>() </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> create(name) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Person(name)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="4-继承"><a href="#4-继承" class="headerlink" title="4. 继承"></a>4. 继承</h2><p>在ES5中, 实现继承是一个很麻烦的事情.</p>
+<p>实现一个继承, 父类是一个矩形类, 子类是正方形类<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Reactangle</span>(<span class="params">length, width</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.length = length</span><br><span class="line">    <span class="keyword">this</span>.width = width</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Reactangle.prototype.getArea = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.length * <span class="keyword">this</span>.width</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Square</span>(<span class="params">length</span>) </span>&#123;</span><br><span class="line">    Reactangle.call(<span class="keyword">this</span>, length, length)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Square.prototype = <span class="built_in">Object</span>.create(Reactangle.prototype, &#123;</span><br><span class="line">    <span class="keyword">constructor</span>: &#123;</span><br><span class="line">        value: Square,</span><br><span class="line">        enumerable: <span class="literal">true</span>,</span><br><span class="line">        writable: <span class="literal">true</span>,</span><br><span class="line">        configurable: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> square = <span class="keyword">new</span> Square(<span class="number">3</span>)</span><br><span class="line">square.getArea()</span><br></pre></td></tr></table></figure></p>
+<p>必须用<code>Object.create</code> 关联子类和父类的原型, 并且在子类的构造方法中还要使用<code>Reactangle.call()</code>方法</p>
+<p>用ES6重写<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(length, width) &#123;</span><br><span class="line">        <span class="keyword">this</span>.length = length</span><br><span class="line">        <span class="keyword">this</span>.width = width</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    getArea() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.length * <span class="keyword">this</span>.width</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Square</span> <span class="keyword">extends</span> <span class="title">Rectangle</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(length) &#123;</span><br><span class="line">        <span class="comment">// 与 Rectangle.call(this, length, length) 相同</span></span><br><span class="line">        <span class="keyword">super</span>(length, length)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> square = <span class="keyword">new</span> Square(<span class="number">3</span>)</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/27/实现左侧固定宽度-右侧自适应的两栏布局常见方法/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1969,445 +2375,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/01/JavaScript函数中this的四种绑定策略/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zzzmj">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/a.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="你好,世界">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/01/01/JavaScript函数中this的四种绑定策略/" class="post-title-link" itemprop="url">JavaScript函数中this的四种绑定策略</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-01-01 14:44:36 / 修改时间：18:03:24" itemprop="dateCreated datePublished" datetime="2019-01-01T14:44:36+08:00">2019-01-01</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <a href="/2019/01/01/JavaScript函数中this的四种绑定策略/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/01/01/JavaScript函数中this的四种绑定策略/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-            <span id="/2019/01/01/JavaScript函数中this的四种绑定策略/" class="leancloud_visitors" data-flag-title="JavaScript函数中this的四种绑定策略">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读次数：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="this的四种绑定策略"><a href="#this的四种绑定策略" class="headerlink" title="this的四种绑定策略"></a>this的四种绑定策略</h2><ul>
-<li>默认绑定</li>
-<li>隐式绑定</li>
-<li>显示绑定</li>
-<li>new绑定</li>
-</ul>
-<h3 id="1-默认绑定"><a href="#1-默认绑定" class="headerlink" title="1. 默认绑定"></a>1. 默认绑定</h3><p>当一个函数没有明确的<strong>调用对象</strong>的时候，也就是单纯作为独立函数调用的时候，将对函数的this使用默认绑定：绑定到全局的window对象</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第一个例子</span></span><br><span class="line"><span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="number">2</span></span><br><span class="line">foo() <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第二个迷惑性的例子</span></span><br><span class="line"><span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">3</span></span><br><span class="line">    <span class="keyword">var</span> inner = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</span><br><span class="line">    &#125;</span><br><span class="line">    inner()</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="number">2</span></span><br><span class="line">foo() <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
-<p>第二个例子虽然在foo()作用域内声明了a变量为3, 但它并不是一个对象, 所以this最终还是会指向全局的window对象</p>
-<h3 id="2-隐式绑定"><a href="#2-隐式绑定" class="headerlink" title="2. 隐式绑定"></a>2. 隐式绑定</h3><p>函数被调用时有上下文对象，那么this会绑定这个上下文对象</p>
-<p>书上写的上下文对象意思很模糊, 觉得这里翻译的其实不太好</p>
-<p>我感觉比较好的解释是：<strong>当函数被一个对象包含的时候, 我们称这个函数的this被隐式绑定到这个对象上了</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o = &#123;</span><br><span class="line">    a: <span class="number">2</span>,</span><br><span class="line">    foo: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>在一串对象属性引用链中, this绑定的是最内层的对象</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">      a: <span class="number">1</span>,</span><br><span class="line">      obj2: &#123;</span><br><span class="line">           a: <span class="number">2</span>,</span><br><span class="line">           obj3: &#123;</span><br><span class="line">                a:<span class="number">3</span>,</span><br><span class="line">                getA: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                    <span class="built_in">console</span>.log(<span class="keyword">this</span>.a)   </span><br><span class="line">                 &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">&#125;</span><br><span class="line">obj.obj2.obj3.getA();  <span class="comment">// 输出3</span></span><br></pre></td></tr></table></figure>
-<h4 id="隐式丢失"><a href="#隐式丢失" class="headerlink" title="隐式丢失"></a>隐式丢失</h4><p>最常见的this绑定问题就是被隐式绑定的函数会丢失绑定对象, 也就是它会应用默认绑定, 把this绑定到全局对象或者undefined上</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    a: <span class="number">2</span>,</span><br><span class="line">    foo: foo,</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="number">5</span></span><br><span class="line"><span class="keyword">var</span> bar = obj.foo </span><br><span class="line">bar() <span class="comment">// 5</span></span><br></pre></td></tr></table></figure>
-<p>像这个例子, obj对象把foo函数的引用传给bar的时候, 会丢失this对obj的绑定</p>
-<p>回调函数同样也会丢失绑定<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    a: <span class="number">2</span>,</span><br><span class="line">    foo: foo,</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="number">5</span></span><br><span class="line">setTimeout(obj.foo, <span class="number">100</span>) <span class="comment">// 5</span></span><br></pre></td></tr></table></figure></p>
-<p><strong>这种函数赋值的方式是无法将函数所绑定的this对象也传递过去的</strong></p>
-<h3 id="3-显式绑定"><a href="#3-显式绑定" class="headerlink" title="3. 显式绑定"></a>3. 显式绑定</h3><p>显式绑定是通过<code>apply</code>或者<code>call</code>函数绑定的对象</p>
-<p>如果你想传递函数并且把所绑定的this对象也传递过去, 那么就可以使用call()</p>
-<p>fn.call(object)</p>
-<ul>
-<li>fn是你调用的函数</li>
-<li>object是你希望绑定的对象</li>
-<li>作用：即刻调用函数fn(), 调用时这个函数的this指向object</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.a)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    a: <span class="number">1</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo.call(obj)</span><br></pre></td></tr></table></figure>
-<p>这样做有个缺点, 每次调用都会依赖call</p>
-<p>所以可以将它包装成函数<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.a)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    a: <span class="number">1</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> bar = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    foo.call(obj)</span><br><span class="line">&#125;</span><br><span class="line">bar()</span><br></pre></td></tr></table></figure></p>
-<p>如果使用bind会更简单<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.a)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    a: <span class="number">1</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> bar = foo.bind(obj)</span><br><span class="line">bar()</span><br></pre></td></tr></table></figure></p>
-<p><strong>call和bind的区别是</strong>：在绑定this到对象参数的同时：</p>
-<ol>
-<li>call将立即执行该函数</li>
-<li>bind不执行函数，只返回一个可供执行的函数</li>
-</ol>
-<h3 id="4-new绑定"><a href="#4-new绑定" class="headerlink" title="4. new绑定"></a>4. new绑定</h3><p>来new来调用函数，会自动执行下列操作</p>
-<ol>
-<li>创建一个全新的对象</li>
-<li>这个新对象被执行[[prototype]]连接</li>
-<li>这个新对象会绑定到函数调用的this</li>
-<li>如果函数没有返回其他对象，那么new表达式中的函数调用会自动返回这个新对象</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.a = a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> bar = <span class="keyword">new</span> foo(<span class="number">2</span>)</span><br><span class="line"><span class="built_in">console</span>.log(bar.a) <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
-<h3 id="5-优先级"><a href="#5-优先级" class="headerlink" title="5. 优先级"></a>5. 优先级</h3><p><strong>new绑定 &gt; 显示绑定 &gt; 隐式绑定 &gt; 默认绑定</strong></p>
-<p>默认绑定在严格模式下会绑定到undefined, 否则绑定到全局对象</p>
-<p>参考资料：<br><a href="https://book.douban.com/subject/26351021/" target="_blank" rel="noopener">你不知道的JavaScript(上卷)</a><br><a href="http://www.cnblogs.com/penghuwan/p/7356210.html" target="_blank" rel="noopener">【javascript】函数中的this的四种绑定形式</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/20/for-循环中的setTimeout-function-异步问题/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zzzmj">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/a.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="你好,世界">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/12/20/for-循环中的setTimeout-function-异步问题/" class="post-title-link" itemprop="url">for 循环中的setTimeout(function(){})异步问题</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-12-20 19:12:44" itemprop="dateCreated datePublished" datetime="2018-12-20T19:12:44+08:00">2018-12-20</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-12-26 08:58:49" itemprop="dateModified" datetime="2018-12-26T08:58:49+08:00">2018-12-26</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <a href="/2018/12/20/for-循环中的setTimeout-function-异步问题/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/12/20/for-循环中的setTimeout-function-异步问题/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-            <span id="/2018/12/20/for-循环中的setTimeout-function-异步问题/" class="leancloud_visitors" data-flag-title="for 循环中的setTimeout(function(){})异步问题">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读次数：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>阅读这段代码</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt;= <span class="number">5</span>; i++) &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span> <span class="title">timer</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(i);</span><br><span class="line">    &#125;, i*<span class="number">1000</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>预期是分别输出数字1-5, 每秒1次，每次1个<br>结果却是每秒一次输出了5个6</p>
-<h2 id="setTimeout的执行原理"><a href="#setTimeout的执行原理" class="headerlink" title="setTimeout的执行原理"></a>setTimeout的执行原理</h2><p>setTimeout()是一个异步方法, 传递一个函数，<br>延迟一段时候把该函数添加到队列当中，并不是立即执行,<br>而且必须等当前环境所有代码执行完以后, 才会运行</p>
-<p>也就是说我们执行这个for循环的时候<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(fun(...), <span class="number">1000</span>)</span><br><span class="line">setTimeout(fun(...), <span class="number">2000</span>)</span><br><span class="line">setTimeout(fun(...), <span class="number">3000</span>)</span><br><span class="line">setTimeout(fun(...), <span class="number">4000</span>)</span><br><span class="line">setTimeout(fun(...), <span class="number">5000</span>)</span><br></pre></td></tr></table></figure></p>
-<p>五个函数先进入了队列, 然后等for循环结束后再依次出队 (粗略理解, 实质上是回调函数)<br>for循环结束后, 此时i是等于6的, 所以每秒一次输出了5个6</p>
-<p><strong>要注意到var定义的i实质上是全局变量</strong>, 等同于下面的代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> i</span><br><span class="line"><span class="keyword">for</span> (i = <span class="number">1</span>; i &lt;= <span class="number">5</span>; i++) &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><h3 id="使用闭包"><a href="#使用闭包" class="headerlink" title="使用闭包"></a>使用闭包</h3><p>这个办法的原理是创建了闭包作用域, 每次循环会生成一个新的闭包作用域, 使得延迟函数回调可以访问到正确的值</p>
-<p>注意, 闭包作用域里必须声明变量j, 如果是一个空的作用域, 那不会产生作用<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt;= <span class="number">5</span>; i++) &#123;</span><br><span class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params">j</span>) </span>&#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="keyword">function</span> <span class="title">timer</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(j);</span><br><span class="line">        &#125;, j*<span class="number">1000</span>)</span><br><span class="line">    &#125;)(i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="使用ES6中的let"><a href="#使用ES6中的let" class="headerlink" title="使用ES6中的let"></a>使用ES6中的let</h3><p>这个办法的原理是通过let来劫持块作用域, 注意, 这个变量i不只会声明一次, 每次迭代的时候都会声明i, 每次迭代后, i的值都会使用</p>
-<p>上一个迭代的值来初始化这个变量, 形成一个块作用域</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt;= <span class="number">5</span>; i++) &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span> <span class="title">timer</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(i);</span><br><span class="line">    &#125;, i*<span class="number">1000</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2457,7 +2424,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-count">19</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2488,7 +2455,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">9</span>
+                      
+                    
+                    <span class="site-state-item-count">10</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -2545,7 +2514,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">22</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
