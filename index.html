@@ -347,6 +347,214 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/04/用CSS画一个带阴影的三角形/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zzzmj">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/a.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="你好,世界">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/04/用CSS画一个带阴影的三角形/" class="post-title-link" itemprop="url">用CSS画一个带阴影的三角形</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-04 13:40:09 / 修改时间：13:40:39" itemprop="dateCreated datePublished" datetime="2019-03-04T13:40:09+08:00">2019-03-04</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/CSS/" itemprop="url" rel="index"><span itemprop="name">CSS</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2019/03/04/用CSS画一个带阴影的三角形/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/03/04/用CSS画一个带阴影的三角形/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2019/03/04/用CSS画一个带阴影的三角形/" class="leancloud_visitors" data-flag-title="用CSS画一个带阴影的三角形">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-思路"><a href="#1-思路" class="headerlink" title="1. 思路"></a>1. 思路</h2><p>怎么用CSS画一个带阴影的三角形呢 ?<br>有童鞋说, 这还不简单吗<br>网上有很多解决方案, 但其实大多都是实现不太完美的, 存在一些问题</p>
+<p>假设我们做一个向下的三角形箭头<br>常见的方法大致有两种</p>
+<ol>
+<li>通过边框控制, border-left和border-right设为透明, border-top设为预定的颜色即可</li>
+<li>通过 transform 旋转盒子</li>
+</ol>
+<p>方法一可以画三角形, 但是画阴影是很难做到的(如果做到的朋友, 欢迎给我留言)</p>
+<h2 id="2-设计"><a href="#2-设计" class="headerlink" title="2. 设计"></a>2. 设计</h2><h3 id="2-1-边框法"><a href="#2-1-边框法" class="headerlink" title="2.1 边框法"></a>2.1 边框法</h3><p><img src="https://user-gold-cdn.xitu.io/2019/3/4/169471eb1dd7ca74?w=1093&amp;h=589&amp;f=png&amp;s=13383" alt="在这里插入图片描述"><br>html结构<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>css样式<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#ff8605</span>;</span><br><span class="line">    <span class="attribute">box-shadow</span>: <span class="number">2px</span> <span class="number">2px</span> <span class="number">2px</span> <span class="built_in">rgba</span>(0, 0, 0, .2);</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">''</span>;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">bottom</span>: -<span class="number">9px</span>;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">45px</span>;</span><br><span class="line">    <span class="attribute">border-left</span>: <span class="number">10px</span> solid transparent;</span><br><span class="line">    <span class="attribute">border-right</span>: <span class="number">10px</span> solid transparent;</span><br><span class="line">    <span class="attribute">border-top</span>: <span class="number">10px</span> solid <span class="number">#ff8605</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>缺点很明显, 我们不能通过box-shadow的方式来设置阴影, 阴影会是一个盒子</p>
+<p>但如果不用设阴影, 只是需要边框的话, 我们可以再定义一个伪类元素, 覆盖到三角形的下面即可<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span><span class="selector-pseudo">::before</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">bottom</span>: -<span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">45px</span>;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">''</span>;</span><br><span class="line">    <span class="attribute">border-left</span>: <span class="number">10px</span> solid transparent;</span><br><span class="line">    <span class="attribute">border-right</span>: <span class="number">10px</span> solid transparent;</span><br><span class="line">    <span class="attribute">border-top</span>: <span class="number">10px</span> solid <span class="built_in">rgba</span>(0, 0, 0, .1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如图所示<br><img src="https://user-gold-cdn.xitu.io/2019/3/4/169471eb1e2f5234?w=1093&amp;h=600&amp;f=png&amp;s=14319" alt="在这里插入图片描述"></p>
+<p>如果要求不严格似乎也够用了. 但作为一个严峻的前端工程师! 我们还是不能容忍这种实现方法, 下面我们看一看<code>tranform</code>方法是如何解决的</p>
+<h3 id="2-2-transform方法"><a href="#2-2-transform方法" class="headerlink" title="2.2 transform方法"></a>2.2 transform方法</h3><p>这种方法的思路就是使用transform旋转盒子, 一半被上面的容器遮挡, 一半显示出来</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span><span class="selector-pseudo">::before</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">bottom</span>: -<span class="number">5px</span>;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">45px</span>;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">''</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#ff8605</span>;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">rotate</span>(135deg);</span><br><span class="line">    <span class="attribute">box-shadow</span>: <span class="number">1px</span> -<span class="number">2px</span> <span class="number">2px</span> <span class="built_in">rgba</span>(0, 0, 0, .2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://user-gold-cdn.xitu.io/2019/3/4/169471eb1dc31729?w=1124&amp;h=607&amp;f=png&amp;s=16935" alt="在这里插入图片描述"></p>
+<p><strong>我们似乎实现了我们想要的结果, 但是, 其实是存在一个问题的, 但因为我们的阴影面积不够大, 所以图片上看起来不明显</strong></p>
+<p>当我们把<code>box-shadow</code>的阴影面积扩大时, 我们发现到问题的所在了</p>
+<p><img src="https://user-gold-cdn.xitu.io/2019/3/4/169471eb1e0b90d6?w=1103&amp;h=613&amp;f=png&amp;s=19913" alt="在这里插入图片描述"></p>
+<p>盒子突出来了, 那怎么解决呢</p>
+<p>我们再定义一个与容器颜色相同的盒子, 将上半部分盖住就可以啦.<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* transform方法 */</span></span><br><span class="line"><span class="selector-class">.box</span><span class="selector-pseudo">::before</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">bottom</span>: -<span class="number">5px</span>;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">45px</span>;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">''</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#ff8605</span>;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">rotate</span>(135deg);</span><br><span class="line">    <span class="attribute">box-shadow</span>: <span class="number">1px</span> -<span class="number">2px</span> <span class="number">5px</span> <span class="built_in">rgba</span>(0, 0, 0, .2);</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">bottom</span>: <span class="number">0px</span>;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">40px</span>;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">''</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#ff8605</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>要注意三角形应该用<code>before</code>定义, 覆盖的盒子应该用<code>after</code>定义, 这样盒子才能覆盖到三角形上面</p>
+<p>实现效果:<br><img src="https://user-gold-cdn.xitu.io/2019/3/4/169471eb1e3d0784?w=1084&amp;h=625&amp;f=png&amp;s=17210" alt="在这里插入图片描述"></p>
+<h2 id="3-最终解决方案代码"><a href="#3-最终解决方案代码" class="headerlink" title="3. 最终解决方案代码"></a>3. 最终解决方案代码</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>CSS实现带阴影效果的三角形<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css">            <span class="selector-class">.box</span> &#123;</span></span><br><span class="line"><span class="undefined">                position: relative;</span></span><br><span class="line"><span class="undefined">                width: 200px;</span></span><br><span class="line"><span class="undefined">                height: 100px;</span></span><br><span class="line"><span class="css">                <span class="selector-tag">background</span>: <span class="selector-id">#ff8605</span>;</span></span><br><span class="line"><span class="css">                <span class="selector-tag">box-shadow</span>: 2<span class="selector-tag">px</span> 2<span class="selector-tag">px</span> 2<span class="selector-tag">px</span> <span class="selector-tag">rgba</span>(0, 0, 0, <span class="selector-class">.2</span>);</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="css">            <span class="selector-class">.box</span><span class="selector-pseudo">::before</span> &#123;</span></span><br><span class="line"><span class="undefined">                position: absolute;</span></span><br><span class="line"><span class="undefined">                bottom: -5px;</span></span><br><span class="line"><span class="undefined">                left: 45px;</span></span><br><span class="line"><span class="undefined">                content: '';</span></span><br><span class="line"><span class="undefined">                width: 10px;</span></span><br><span class="line"><span class="undefined">                height: 10px;</span></span><br><span class="line"><span class="css">                <span class="selector-tag">background</span>: <span class="selector-id">#ff8605</span>;</span></span><br><span class="line"><span class="undefined">                transform: rotate(135deg);</span></span><br><span class="line"><span class="css">                <span class="selector-tag">box-shadow</span>: 1<span class="selector-tag">px</span> <span class="selector-tag">-2px</span> 5<span class="selector-tag">px</span> <span class="selector-tag">rgba</span>(0, 0, 0, <span class="selector-class">.2</span>);</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="css">            <span class="selector-class">.box</span><span class="selector-pseudo">::after</span> &#123;</span></span><br><span class="line"><span class="undefined">                position: absolute;</span></span><br><span class="line"><span class="undefined">                bottom: 0px;</span></span><br><span class="line"><span class="undefined">                left: 40px;</span></span><br><span class="line"><span class="undefined">                content: '';</span></span><br><span class="line"><span class="undefined">                width: 20px;</span></span><br><span class="line"><span class="undefined">                height: 20px;</span></span><br><span class="line"><span class="css">                <span class="selector-tag">background</span>: <span class="selector-id">#ff8605</span>;</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="undefined">        </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>如果你有更好的实现办法, 欢迎给我留言</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/02/写给自己看的React-笔记/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2223,188 +2431,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/22/欧拉函数及其计算/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zzzmj">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/a.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="你好,世界">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/01/22/欧拉函数及其计算/" class="post-title-link" itemprop="url">欧拉函数及其计算</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-01-22 21:11:29 / 修改时间：21:11:44" itemprop="dateCreated datePublished" datetime="2019-01-22T21:11:29+08:00">2019-01-22</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <a href="/2019/01/22/欧拉函数及其计算/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/01/22/欧拉函数及其计算/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-            <span id="/2019/01/22/欧拉函数及其计算/" class="leancloud_visitors" data-flag-title="欧拉函数及其计算">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读次数：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="欧拉函数"><a href="#欧拉函数" class="headerlink" title="欧拉函数"></a>欧拉函数</h2><h2 id="1-定义"><a href="#1-定义" class="headerlink" title="1. 定义"></a>1. 定义</h2><p>什么是欧拉函数？</p>
-<blockquote>
-<p> 任意给定正整数n，请问在小于等于n的正整数之中，有多少个与n构成互质关系？（比如，在1到8之中，有多少个数与8构成互质关系？）</p>
-</blockquote>
-<p>计算这个值的方法就叫做欧拉函数，用<code>φ(n)</code>表示。在1到8之中，与8形成互质关系的是1、3、5、7，所以 <code>φ(n)</code> = 4。</p>
-<h2 id="2-计算"><a href="#2-计算" class="headerlink" title="2. 计算"></a>2. 计算</h2><p>欧拉函数计算公式<br><img src="https://box.kancloud.cn/2015-08-04_55c058b16129e.png" alt=""><br>这个p是什么呢？</p>
-<p>一个正整数 n 可以通过分解质因数得到<br><img src="https://box.kancloud.cn/2015-08-04_55c057f99f735.png" alt=""><br>例如<code>n = 100</code>我们就可以写成 <code>100 = 2^2 + 5^2</code></p>
-<p>欧拉值 <code>φ(n) = 100 * (1- 1/2) * (1 - 1/5)</code>  </p>
-<p>那么知道了这个公式，我们怎么去计算呢</p>
-<p>大致的几步<br>找到因子<br>将把<code>(1- 1/p)</code>转换为<code>(p - 1) / p</code><br>然后把相同的因子筛去</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">euler</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans = n;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i*i &lt;= ans; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (n % i == <span class="number">0</span>) &#123;   </span><br><span class="line">            ans = ans / i * (i<span class="number">-1</span>);</span><br><span class="line">            <span class="comment">// 将相同的因子除去</span></span><br><span class="line">            <span class="keyword">while</span> (n % i == <span class="number">0</span>) &#123;</span><br><span class="line">                n /= i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (n &gt; <span class="number">1</span>) &#123;</span><br><span class="line">        ans = ans / n * (n<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>由于本文主要目的是讲如何计算，欧拉函数公式的推导过程可以参考维基百科：<a href="https://zh.wikipedia.org/wiki/%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0" target="_blank" rel="noopener">欧拉函数</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2449,7 +2480,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-count">21</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2482,7 +2513,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">10</span>
+                      
+                    
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
