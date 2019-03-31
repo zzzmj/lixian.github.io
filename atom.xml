@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-03-04T05:40:39.349Z</updated>
+  <updated>2019-03-31T03:45:23.412Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,20 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2019年团体程序设计天梯赛总结</title>
+    <link href="http://yoursite.com/2019/03/31/2019%E5%B9%B4%E5%9B%A2%E4%BD%93%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%A4%A9%E6%A2%AF%E8%B5%9B%E6%80%BB%E7%BB%93/"/>
+    <id>http://yoursite.com/2019/03/31/2019年团体程序设计天梯赛总结/</id>
+    <published>2019-03-31T03:45:23.000Z</published>
+    <updated>2019-03-31T03:45:23.412Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>用CSS画一个带阴影的三角形</title>
@@ -518,20 +532,6 @@
       <category term="github" scheme="http://yoursite.com/tags/github/"/>
     
       <category term="搭建博客" scheme="http://yoursite.com/tags/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>test_my_site</title>
-    <link href="http://yoursite.com/2018/11/26/test-my-site/"/>
-    <id>http://yoursite.com/2018/11/26/test-my-site/</id>
-    <published>2018-11-26T02:22:16.000Z</published>
-    <updated>2018-11-26T02:22:16.093Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
     
   </entry>
   
