@@ -1,0 +1,57 @@
+body {
+    background-color: #ff4267;
+    font: normal 12px 'Open Sans';
+}
+
+h1 {
+    font-size: 2em;
+    color: white;
+}
+
+.container h1 {
+    margin: 30px 0px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.countdown, .countup {
+    padding: 0px;
+}
+
+.container .seperator {
+    font-size: 80px;
+    line-height: 70px;
+    vertical-align: top;
+}
+
+.container li {
+    color: white;
+    display: inline-block;
+}
+
+.container p {
+    color: #e0dedf;
+}
+
+.container li span {
+    font-size: 80px;
+    font-weight: 300;
+    line-height: 80px;
+}
+
+
+@media screen and (max-width: 400px) {
+    .container .seperator {
+        font-size: 50px;
+        line-height: 40px;
+        vertical-align: top;
+    }
+
+    .container li span {
+        font-size: 50px;
+        font-weight: 300;
+        line-height: 50px;
+    }
+}
