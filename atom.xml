@@ -451,11 +451,11 @@
       <category term="Web通信" scheme="http://yoursite.com/categories/Web%E9%80%9A%E4%BF%A1/"/>
     
     
-      <category term="爬虫" scheme="http://yoursite.com/tags/%E7%88%AC%E8%99%AB/"/>
-    
       <category term="python" scheme="http://yoursite.com/tags/python/"/>
     
       <category term="socket" scheme="http://yoursite.com/tags/socket/"/>
+    
+      <category term="爬虫" scheme="http://yoursite.com/tags/%E7%88%AC%E8%99%AB/"/>
     
   </entry>
   
