@@ -1,7 +1,7 @@
 // 结束时间
 var countDown = function() {
     var endTime = new Date("08/18/2019 12:00:00")
-    var diff = endTime.getTime() - Date.now()
+    var diff = endTime.getTime() - Date.now()   
     var _second = 1000,
         _minute = _second * 60,
         _hour = _minute * 60,
