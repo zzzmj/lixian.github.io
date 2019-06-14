@@ -347,6 +347,416 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/18/CSS世界-笔记-第三章：流、元素与基本尺寸/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zzzmj">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/a.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="你好,世界">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/18/CSS世界-笔记-第三章：流、元素与基本尺寸/" class="post-title-link" itemprop="url"><<css世界>>笔记 第三章：流、元素与基本尺寸</css世界></a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-18 10:14:42 / 修改时间：11:57:48" itemprop="dateCreated datePublished" datetime="2019-02-18T10:14:42+08:00">2019-02-18</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2019/02/18/CSS世界-笔记-第三章：流、元素与基本尺寸/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/02/18/CSS世界-笔记-第三章：流、元素与基本尺寸/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2019/02/18/CSS世界-笔记-第三章：流、元素与基本尺寸/" class="leancloud_visitors" data-flag-title="<<CSS世界>>笔记 第三章：流、元素与基本尺寸">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>读&lt;&lt;CSS世界&gt;&gt;的笔记, 结合书本做了一些总结, 也查阅了一些其他的资料</p>
+<h2 id="1-元素的显示类型"><a href="#1-元素的显示类型" class="headerlink" title="1. 元素的显示类型"></a>1. 元素的显示类型</h2><p>通常来说，元素分为块级元素和内联元素两种</p>
+<p>使用 <code>display</code> 属性可以指定了元素的显示类型</p>
+<div class="note info">
+            <h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><p>display: block | inline | inline-block</p>
+          </div>
+<span class="label info">块级元素(block)</span>的特点：<br>1. 每个块级元素会从新的一行开始<br>2. 存在盒模型，可设置宽高和内外边距<br>3. <strong>宽度不设置的情况下，是父容器的100%</strong><br><br><span class="label info">内联元素(inline)</span>的特点：<br>1. 与其他内联元素显示在一行上<br>2. 没有盒模型<br>3. <strong>元素宽度就是它包含的文字或图片宽度，不可变</strong><br><br><span class="label info">行内块元素(inline-block)</span>的特点:<br>1. 与行内块元素, 内联元素显示在一行上<br>2. 存在盒模型<br><br><div class="note default">
+            <h4 id="常见的块级元素："><a href="#常见的块级元素：" class="headerlink" title="常见的块级元素："></a>常见的块级元素：</h4><ul><li>div</li><li>p</li><li>ul</li><li>section</li></ul><h4 id="常见的内联元素："><a href="#常见的内联元素：" class="headerlink" title="常见的内联元素："></a>常见的内联元素：</h4><ul><li>a</li><li>img</li><li>span</li><li>button</li><li>input</li></ul>
+          </div>
+<h2 id="width-height的作用细节"><a href="#width-height的作用细节" class="headerlink" title="width/height的作用细节"></a>width/height的作用细节</h2><p>张老师在这一块讲的很杂糅, 总结了一下, 大概有这几点</p>
+<ol>
+<li><p><strong>宽度分离原则</strong>：CSS 中的 width 属性不与影响宽度的 padding/border 属性共存<br>也就是说将宽度控制放在父容器, 子元素来实现padding和border</p>
+</li>
+<li><p>box-sizing 会改变 width/height<br>准确来说是这个属性<code>box-sizing: content-box;</code>, 也是默认属性<br>使用了该属性：真实容器的宽会等于 = width + <code>border*2</code> + <code>padding*2</code><br>最好使用<code>box-sizing: border-box</code>, 这样真实容器的宽度 = width</p>
+</li>
+<li><p>height:100% 失效<br>如果父容器的高度没有设置为默认值, height会失效</p>
+</li>
+<li><p>权重 min &gt; max &gt; !important<br>min-width/height &gt; max-width/height &gt; !important</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/18/CSS-清除浮动原理详解/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zzzmj">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/a.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="你好,世界">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/18/CSS-清除浮动原理详解/" class="post-title-link" itemprop="url">CSS 清除浮动原理详解</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-18 09:34:23 / 修改时间：09:34:48" itemprop="dateCreated datePublished" datetime="2019-02-18T09:34:23+08:00">2019-02-18</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/css/" itemprop="url" rel="index"><span itemprop="name">css</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2019/02/18/CSS-清除浮动原理详解/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/02/18/CSS-清除浮动原理详解/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/2019/02/18/CSS-清除浮动原理详解/" class="leancloud_visitors" data-flag-title="CSS 清除浮动原理详解">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="CSS-清除浮动原理详解"><a href="#CSS-清除浮动原理详解" class="headerlink" title="CSS 清除浮动原理详解"></a>CSS 清除浮动原理详解</h2><h3 id="一-浮动float"><a href="#一-浮动float" class="headerlink" title="一. 浮动float"></a>一. 浮动float</h3><p>float属性的本质是用来实现文字环绕效果的。<br>它有一个很大的副作用：会导致父容器的高度坍塌</p>
+<p>疑问：</p>
+<ol>
+<li>那么将父容器固定高度有用吗？<br>没用，因为只要浮动元素的区域超过了这个高度，依旧会出现环绕效果影响布局</li>
+</ol>
+<p>那么怎么解决这个问题呢？<br>清除浮动方法很多，但本质上只有两种方法</p>
+<ol>
+<li>使用<code>clear</code>清除浮动</li>
+<li>形成<code>BFC</code></li>
+</ol>
+<h3 id="1-1-使用clear清除浮动"><a href="#1-1-使用clear清除浮动" class="headerlink" title="1.1 使用clear清除浮动"></a>1.1 使用clear清除浮动</h3><p><code>clear</code> 属性是 CSS 专门用来处理 <code>float</code>引起的高度坍塌问题</p>
+<p>语法：</p>
+<blockquote>
+<p>clear: none | left | right | both </p>
+</blockquote>
+<p>使用<code>clear: both</code>就可以, <code>left</code>和<code>right</code>可以完全被替代</p>
+<p>使用clear要注意的地方</p>
+<ol>
+<li>clear只会清除自身所在<strong>前面的</strong>元素的浮动</li>
+<li>clear属性只作用在<strong>块级元素</strong>上</li>
+</ol>
+<p>因为clear只会清除前面元素的浮动，因此我们要在容器的最后面添加一个<strong>块级元素</strong>，并让该元素使用<code>clear: both</code>属性</p>
+<p>最常见的做法就是在父容器身上使用<code>::after</code><br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#container</span><span class="selector-pseudo">::after</span> &#123; </span><br><span class="line">    <span class="attribute">content</span>: <span class="string">""</span>;</span><br><span class="line">    <span class="attribute">display</span>: block; </span><br><span class="line">    <span class="attribute">clear</span>: both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>因为clear只作用在块级元素上, <code>::after</code>等伪元素都是内联的<br>所以我们要加上这两行<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">content</span>: "";</span><br><span class="line"><span class="selector-tag">display</span>: <span class="selector-tag">block</span>;</span><br></pre></td></tr></table></figure></p>
+<h3 id="1-2-使用BFC清除浮动"><a href="#1-2-使用BFC清除浮动" class="headerlink" title="1.2 使用BFC清除浮动"></a>1.2 使用BFC清除浮动</h3><p>BFC全称为 <code>block formatting context</code>, 中文为”块级格式化上下文”</p>
+<blockquote>
+<p>性质：如果一个元素触发了 BFC , 那么该元素会形成一个独立容器, 不会影响到外界元素<br>只要触发了 BFC , 元素就不会因为 float 引起高度坍塌</p>
+</blockquote>
+<p><strong>如何触发BFC</strong><br>以下规则只要满足任意一条，即可触发</p>
+<ol>
+<li><html>根元素</html></li>
+<li>float 的值不为 none</li>
+<li>overflow 的值为 auto、scroll 或 hidden</li>
+<li>display 的值为 table-cell、table-caption 和 inline-block 中的任何一个</li>
+<li>position 的值不为 relative 和 static</li>
+</ol>
+<p><strong>BFC的一些特性</strong></p>
+<ol>
+<li>计算BFC高度时，浮动元素也会参与计算(用来解决父元素高度塌陷问题）</li>
+<li>是一个独立的容器，外面元素不会影响他里面的元素</li>
+<li>BFC元素不会与浮动元素的盒子相互重叠（解决兄弟元素排版混乱问题）</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/27/JavaScript-模拟实现call和apply/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1988,421 +2398,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/03/二叉树的三种遍历方式详解/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zzzmj">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/a.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="你好,世界">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/12/03/二叉树的三种遍历方式详解/" class="post-title-link" itemprop="url">二叉树的三种遍历方式详解</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-12-03 20:12:32 / 修改时间：21:26:47" itemprop="dateCreated datePublished" datetime="2018-12-03T20:12:32+08:00">2018-12-03</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/数据结构/" itemprop="url" rel="index"><span itemprop="name">数据结构</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <a href="/2018/12/03/二叉树的三种遍历方式详解/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/12/03/二叉树的三种遍历方式详解/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-            <span id="/2018/12/03/二叉树的三种遍历方式详解/" class="leancloud_visitors" data-flag-title="二叉树的三种遍历方式详解">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读次数：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="二叉树的遍历"><a href="#二叉树的遍历" class="headerlink" title="二叉树的遍历"></a>二叉树的遍历</h2><p>二叉树的遍历方式一般有四种：</p>
-<ul>
-<li>先序遍历</li>
-<li>中序遍历</li>
-<li>后序遍历</li>
-<li>层序遍历<br>因为前三种遍历方式都是采用了递归的方法进行遍历, 这里只介绍前三种</li>
-</ul>
-<p><code>图1：</code><br><img src="http://wx2.sinaimg.cn/mw690/006PpBLogy1fxttx5k6tuj30f10bfq37.jpg" alt=""></p>
-<h2 id="先序遍历"><a href="#先序遍历" class="headerlink" title="先序遍历"></a>先序遍历</h2><p>前序遍历:<br>1.访问根节点。2.访问左子树。3.访问右子树</p>
-<p>按照图1, 前序遍历的的遍历方式是</p>
-<blockquote>
-<p>ABDECF</p>
-</blockquote>
-<h2 id="中序遍历"><a href="#中序遍历" class="headerlink" title="中序遍历"></a>中序遍历</h2><p>前序遍历:<br>1.访问左子树。2.访问根节点。3.访问右子树</p>
-<p>按照图1, 中序遍历的遍历方式是</p>
-<blockquote>
-<p>DBEACF</p>
-</blockquote>
-<h3 id="中序遍历的性质"><a href="#中序遍历的性质" class="headerlink" title="中序遍历的性质"></a>中序遍历的性质</h3><p>由于中序遍历总是把根结点放在左子树和右子树的中间, 因此只要知道根结点，就可以利用该性质还原出整颗二叉树</p>
-<p>至于如何知道根结点，我们可以通过先序序列或者后序序列</p>
-<p>因此：只要知道<code>前序+中序</code>或者<code>中序+后序</code> 我们就能还原二叉树</p>
-<p>但是<code>前序+中序</code> 是做不到的</p>
-<h2 id="后序遍历"><a href="#后序遍历" class="headerlink" title="后序遍历"></a>后序遍历</h2><p>后序遍历:<br>1.访问左子树。2.访问右子树。 3.访问根节点。</p>
-<p>按照图1, 中序遍历的遍历方式是</p>
-<blockquote>
-<p>DEBFCA</p>
-</blockquote>
-<h2 id="重建二叉树"><a href="#重建二叉树" class="headerlink" title="重建二叉树"></a>重建二叉树</h2><p>给定后序序列和中序序列, 重建这颗二叉树</p>
-<p><strong>后序遍历: ACBFGED</strong></p>
-<p><strong>中序遍历: ABCDEFG</strong></p>
-<p>先用手工试算出这个前序序列</p>
-<ol>
-<li><p>第一步: 由后序遍历的最后一个元素知道整棵树最初的根节点为D<br><img src="http://wx3.sinaimg.cn/mw690/006PpBLogy1fxtvfh93sdj3058060mx4.jpg" alt=""></p>
-</li>
-<li><p>第二步:<br>由中序序列知道左子树是｛A,B,C｝， 右子树是｛E,F,G｝</p>
-</li>
-</ol>
-<p>重复一二两步，知道E是右子树的根节点，并存在右子树，没有左子树</p>
-<p>反复套用一二两步规则，最终可得到整颗树<br><img src="http://wx3.sinaimg.cn/mw690/006PpBLogy1fxtvg2hyadj307g08ydfx.jpg" alt=""></p>
-<h2 id="例题：PAT-1020-Tree-Traversals-（25-分）"><a href="#例题：PAT-1020-Tree-Traversals-（25-分）" class="headerlink" title="例题：PAT 1020 Tree Traversals （25 分）"></a>例题：PAT 1020 Tree Traversals （25 分）</h2><p>给定后序序列和中序序列，求层序序列</p>
-<p>思路：还原整个二叉树，再层序遍历求解层序序列</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/03/蓝桥杯历届试题-剪格子-Java实现/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zzzmj">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/a.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="你好,世界">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/12/03/蓝桥杯历届试题-剪格子-Java实现/" class="post-title-link" itemprop="url">蓝桥杯历届试题 剪格子 Java实现</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-12-03 10:53:53 / 修改时间：10:59:53" itemprop="dateCreated datePublished" datetime="2018-12-03T10:53:53+08:00">2018-12-03</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <a href="/2018/12/03/蓝桥杯历届试题-剪格子-Java实现/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/12/03/蓝桥杯历届试题-剪格子-Java实现/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-            <span id="/2018/12/03/蓝桥杯历届试题-剪格子-Java实现/" class="leancloud_visitors" data-flag-title="蓝桥杯历届试题 剪格子 Java实现">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读次数：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>题目链接：<a href="http://lx.lanqiao.cn/problem.page?gpid=T27" target="_blank" rel="noopener">http://lx.lanqiao.cn/problem.page?gpid=T27</a></p>
-<p>这道题用深搜解决</p>
-<p>注意点有几个地方</p>
-<ul>
-<li><strong>首先题目要求的是先输入列，再输入行</strong>(简直反人类！)</li>
-<li>它说要从左上角开始搜，意味着<code>vis[0][0]</code>这个点一定要访问过</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 剪格子</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zmj</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@create</span> 2018/12/2</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span>[] X = &#123;<span class="number">0</span>, <span class="number">0</span>, -<span class="number">1</span>, <span class="number">1</span>&#125;, Y = &#123;<span class="number">1</span>, -<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span>[][] map = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">15</span>][<span class="number">15</span>];</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span>[][] vis = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">15</span>][<span class="number">15</span>];</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> n, m, total, min;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> sum, <span class="keyword">int</span> pos)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (sum &gt; total / <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (sum == total / <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (pos &lt; min &amp;&amp; vis[<span class="number">0</span>][<span class="number">0</span>] == <span class="number">1</span>) &#123;</span><br><span class="line">                min = pos;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> p = a + X[i];</span><br><span class="line">            <span class="keyword">int</span> q = b + Y[i];</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (p &gt;= <span class="number">0</span> &amp;&amp; p &lt; n &amp;&amp; q &gt;= <span class="number">0</span> &amp;&amp; q &lt; m &amp;&amp; vis[p][q] == <span class="number">0</span>) &#123;</span><br><span class="line">                sum += map[p][q];</span><br><span class="line">                vis[p][q] = <span class="number">1</span>;</span><br><span class="line">                dfs(p, q, sum, pos + <span class="number">1</span>);</span><br><span class="line">                sum -= map[p][q];</span><br><span class="line">                vis[p][q] = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        m = in.nextInt();</span><br><span class="line">        n = in.nextInt();</span><br><span class="line">        total = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; m; j++) &#123;</span><br><span class="line">                map[i][j] = in.nextInt();</span><br><span class="line">                total += map[i][j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        min = Integer.MAX_VALUE;</span><br><span class="line">        <span class="keyword">if</span>(total % <span class="number">2</span> == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; m; j++) &#123;</span><br><span class="line">                    vis[i][j] = <span class="number">1</span>;</span><br><span class="line">                    dfs(i, j, map[i][j], <span class="number">1</span>);</span><br><span class="line">                    vis[i][j] = <span class="number">0</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (min == Integer.MAX_VALUE) &#123;</span><br><span class="line">                System.out.println(<span class="string">'0'</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                System.out.println(min);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">'0'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2452,7 +2447,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-count">25</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

@@ -96,14 +96,17 @@
 
 
 
-  <meta property="og:type" content="article">
-<meta property="og:title" content="test_my_site">
-<meta property="og:url" content="http://yoursite.com/2018/11/26/test-my-site/index.html">
+  <meta name="description" content="1. 原理JS 拖拽一个元素的原理：首先要明白三个值  鼠标的位置A = {x, y} 盒子的位置B = {x, y} 鼠标在盒子内的距离C = {A.x - B.x, A.y - B.y}  涉及到三个鼠标事件  鼠标按下时，mousedown 鼠标移动时，mousemove 鼠标松开时，mouseup  然后就可以开始讲明实现过程了  鼠标按下的时候，计算出C，鼠标在盒子里距离（鼠标位置 -">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js实现拖拽效果（一）：原理实现">
+<meta property="og:url" content="http://yoursite.com/2019/06/14/js实现拖拽效果（一）：原理实现/index.html">
 <meta property="og:site_name" content="你好,世界">
+<meta property="og:description" content="1. 原理JS 拖拽一个元素的原理：首先要明白三个值  鼠标的位置A = {x, y} 盒子的位置B = {x, y} 鼠标在盒子内的距离C = {A.x - B.x, A.y - B.y}  涉及到三个鼠标事件  鼠标按下时，mousedown 鼠标移动时，mousemove 鼠标松开时，mouseup  然后就可以开始讲明实现过程了  鼠标按下的时候，计算出C，鼠标在盒子里距离（鼠标位置 -">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-11-26T02:22:16.093Z">
+<meta property="og:updated_time" content="2019-06-14T07:53:59.553Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="test_my_site">
+<meta name="twitter:title" content="js实现拖拽效果（一）：原理实现">
+<meta name="twitter:description" content="1. 原理JS 拖拽一个元素的原理：首先要明白三个值  鼠标的位置A = {x, y} 盒子的位置B = {x, y} 鼠标在盒子内的距离C = {A.x - B.x, A.y - B.y}  涉及到三个鼠标事件  鼠标按下时，mousedown 鼠标移动时，mousemove 鼠标松开时，mouseup  然后就可以开始讲明实现过程了  鼠标按下的时候，计算出C，鼠标在盒子里距离（鼠标位置 -">
 
 
 
@@ -112,7 +115,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/11/26/test-my-site/">
+  <link rel="canonical" href="http://yoursite.com/2019/06/14/js实现拖拽效果（一）：原理实现/">
 
 
 
@@ -122,7 +125,7 @@
   };
 </script>
 
-  <title>test_my_site | 你好,世界</title>
+  <title>js实现拖拽效果（一）：原理实现 | 你好,世界</title>
   
 
 
@@ -347,7 +350,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/26/test-my-site/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/14/js实现拖拽效果（一）：原理实现/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zzzmj">
@@ -364,7 +367,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">test_my_site
+          <h1 class="post-title" itemprop="name headline">js实现拖拽效果（一）：原理实现
 
               
             
@@ -390,12 +393,34 @@
                 
               
 
-              <time title="创建时间：2018-11-26 10:22:16" itemprop="dateCreated datePublished" datetime="2018-11-26T10:22:16+08:00">2018-11-26</time>
+              <time title="创建时间：2019-06-14 15:53:32 / 修改时间：15:53:59" itemprop="dateCreated datePublished" datetime="2019-06-14T15:53:32+08:00">2019-06-14</time>
             
 
+            
+              
+
+              
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -408,8 +433,8 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
             
-                <a href="/2018/11/26/test-my-site/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/11/26/test-my-site/" itemprop="commentCount"></span>
+                <a href="/2019/06/14/js实现拖拽效果（一）：原理实现/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/06/14/js实现拖拽效果（一）：原理实现/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -417,7 +442,7 @@
 
           
           
-            <span id="/2018/11/26/test-my-site/" class="leancloud_visitors" data-flag-title="test_my_site">
+            <span id="/2019/06/14/js实现拖拽效果（一）：原理实现/" class="leancloud_visitors" data-flag-title="js实现拖拽效果（一）：原理实现">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -448,7 +473,30 @@
       
 
       
-        
+        <h2 id="1-原理"><a href="#1-原理" class="headerlink" title="1. 原理"></a>1. 原理</h2><p>JS 拖拽一个元素的原理：<br>首先要明白三个值</p>
+<ol>
+<li>鼠标的位置A = {x, y}</li>
+<li>盒子的位置B = {x, y}</li>
+<li>鼠标在盒子内的距离C = {A.x - B.x, A.y - B.y}</li>
+</ol>
+<p>涉及到三个鼠标事件</p>
+<ul>
+<li>鼠标按下时，<code>mousedown</code></li>
+<li>鼠标移动时，<code>mousemove</code></li>
+<li>鼠标松开时，<code>mouseup</code></li>
+</ul>
+<p>然后就可以开始讲明实现过程了</p>
+<ul>
+<li>鼠标按下的时候，计算出C，鼠标在盒子里距离（鼠标位置 - 盒子位置）</li>
+<li>鼠标移动的时候，更新盒子位置 B = A - C</li>
+<li>鼠标松开的时候，关闭2, 3过程的两个鼠标监听器</li>
+</ul>
+<h2 id="2-代码实现"><a href="#2-代码实现" class="headerlink" title="2. 代码实现"></a>2. 代码实现</h2><p>html<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>css<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: beige;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.box</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">    <span class="attribute">cursor</span>: move;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>js<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> box = <span class="built_in">document</span>.querySelector(<span class="string">'.box'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取元素的样式</span></span><br><span class="line"><span class="keyword">var</span> getStyle = <span class="function"><span class="keyword">function</span>(<span class="params">element</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">window</span>.getComputedStyle(box, <span class="literal">null</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取目标元素的位置</span></span><br><span class="line"><span class="keyword">var</span> getTargetPos = <span class="function"><span class="keyword">function</span>(<span class="params">elem</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> elemStyle = getStyle(elem)</span><br><span class="line">    <span class="keyword">var</span> pos = &#123;</span><br><span class="line">        x: <span class="built_in">parseInt</span>(elemStyle.left.slice(<span class="number">0</span>, <span class="number">-2</span>)),</span><br><span class="line">        y: <span class="built_in">parseInt</span>(elemStyle.top.slice(<span class="number">0</span>, <span class="number">-2</span>))</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> pos</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置目标元素的位置</span></span><br><span class="line"><span class="keyword">var</span> setTargetPos = <span class="function"><span class="keyword">function</span>(<span class="params">elem, pos</span>) </span>&#123;</span><br><span class="line">    elem.style.left = pos.left</span><br><span class="line">    elem.style.top = pos.top</span><br><span class="line">    <span class="keyword">return</span> elem</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">box.addEventListener(<span class="string">'mousedown'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> divPos = getTargetPos(box)</span><br><span class="line">    <span class="keyword">var</span> mousePos = &#123;</span><br><span class="line">        x: event.clientX,</span><br><span class="line">        y: event.clientY</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 鼠标按下的时候，记录鼠标在div内部的距离</span></span><br><span class="line">    <span class="keyword">var</span> innerDis = &#123;</span><br><span class="line">        x: event.clientX - divPos.x,</span><br><span class="line">        y: event.clientY - divPos.y</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> move = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 鼠标移动到的新位置 - 鼠标在div的内部距离 即是拖动元素的新位置</span></span><br><span class="line">        setTargetPos(box, &#123;</span><br><span class="line">            left: (event.clientX - innerDis.x) + <span class="string">'px'</span>,</span><br><span class="line">            top: (event.clientY - innerDis.y) + <span class="string">'px'</span>,</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> end = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">document</span>.removeEventListener(<span class="string">'mousemove'</span>, move)</span><br><span class="line">        <span class="built_in">document</span>.removeEventListener(<span class="string">'mouseup'</span>, end)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 必须绑定在document对象上，如果绑定在box对象上，当鼠标脱快了移出box盒子时，就会产生BUG</span></span><br><span class="line">    <span class="built_in">document</span>.addEventListener(<span class="string">'mousemove'</span>, move, <span class="literal">false</span>)</span><br><span class="line">    <span class="built_in">document</span>.addEventListener(<span class="string">'mouseup'</span>, end, <span class="literal">false</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>这样做实现了效果，但并不利用复用</p>
+<p>下一篇文章会对我们的拖拽效果进行封装</p>
+
       
     </div>
 
@@ -478,8 +526,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/26/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2019/06/14/js获取元素的left和top值方法总结/" rel="next" title="js获取元素的left和top值方法总结">
+                <i class="fa fa-chevron-left"></i> js获取元素的left和top值方法总结
               </a>
             
           </div>
@@ -488,8 +536,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/11/29/使用GitHub和Hexo搭建博客/" rel="prev" title="使用GitHub和Hexo搭建博客">
-                使用GitHub和Hexo搭建博客 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/06/14/js实现拖拽效果（二）：面向对象封装/" rel="prev" title="js实现拖拽效果（二）：面向对象封装">
+                js实现拖拽效果（二）：面向对象封装 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -539,8 +587,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -715,6 +772,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-原理"><span class="nav-number">1.</span> <span class="nav-text">1. 原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-代码实现"><span class="nav-number">2.</span> <span class="nav-text">2. 代码实现</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
