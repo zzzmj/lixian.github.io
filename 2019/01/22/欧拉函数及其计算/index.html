@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -169,7 +169,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -179,7 +179,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta">
     
@@ -348,20 +348,20 @@
 
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/22/欧拉函数及其计算/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zzzmj">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/a.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="你好,世界">
     </span>
 
@@ -463,8 +463,8 @@
 <p> 任意给定正整数n，请问在小于等于n的正整数之中，有多少个与n构成互质关系？（比如，在1到8之中，有多少个数与8构成互质关系？）</p>
 </blockquote>
 <p>计算这个值的方法就叫做欧拉函数，用<code>φ(n)</code>表示。在1到8之中，与8形成互质关系的是1、3、5、7，所以 <code>φ(n)</code> = 4。</p>
-<h2 id="2-计算"><a href="#2-计算" class="headerlink" title="2. 计算"></a>2. 计算</h2><p>欧拉函数计算公式<br><img src="https://box.kancloud.cn/2015-08-04_55c058b16129e.png" alt=""><br>这个p是什么呢？</p>
-<p>一个正整数 n 可以通过分解质因数得到<br><img src="https://box.kancloud.cn/2015-08-04_55c057f99f735.png" alt=""><br>例如<code>n = 100</code>我们就可以写成 <code>100 = 2^2 + 5^2</code></p>
+<h2 id="2-计算"><a href="#2-计算" class="headerlink" title="2. 计算"></a>2. 计算</h2><p>欧拉函数计算公式<br><img src="https://box.kancloud.cn/2015-08-04_55c058b16129e.png" alt><br>这个p是什么呢？</p>
+<p>一个正整数 n 可以通过分解质因数得到<br><img src="https://box.kancloud.cn/2015-08-04_55c057f99f735.png" alt><br>例如<code>n = 100</code>我们就可以写成 <code>100 = 2^2 + 5^2</code></p>
 <p>欧拉值 <code>φ(n) = 100 * (1- 1/2) * (1 - 1/5)</code>  </p>
 <p>那么知道了这个公式，我们怎么去计算呢</p>
 <p>大致的几步<br>找到因子<br>将把<code>(1- 1/p)</code>转换为<code>(p - 1) / p</code><br>然后把相同的因子筛去</p>
@@ -573,7 +573,7 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image" src="/images/a.png" alt="zzzmj">
             
@@ -789,7 +789,7 @@
 </div>
 
 
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 

@@ -41,6 +41,17 @@ h1 {
     vertical-align: top;
 }
 
+.container .flag {
+    margin: 0px;
+    font-weight: bold;
+    font-size: 2em;
+    color: white;
+}
+
+.active {
+    display: none;
+}
+
 .container li {
     color: white;
     display: inline-block;
